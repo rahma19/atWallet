@@ -1,0 +1,85 @@
+ion-toolbar{
+  height: 15%;
+}
+ion-title{
+  margin-top: 15%;
+}
+ion-content {
+    --background: var(--brand-secondary);
+   
+    hr{
+      background-color: gray;
+    }
+  }
+  
+  h1.greeting {
+    font-size: 24px;
+    color: #000000;
+  }
+
+  .txt{
+    font-size: 30px;
+    color: white;
+  }
+
+  .rechge{
+    display: flex;text-align: center;
+  }
+
+  .iconcrd{
+    float: left;color:white;
+  }
+
+  .crd{
+    background-color: rgb(14, 153, 153);
+    color: white;
+    margin-left: 4%;
+    border-radius: 5%;
+    height: 30%;
+    ion-card-content{
+        font-size: 20px;
+      }
+  }
+
+  .crd1{
+    border-top-left-radius:8%;
+    border-top-right-radius: 8%;
+    width: 100%;margin: 0;height: 100%;background-color: rgb(245, 245, 245);
+  }
+
+  ion-card{
+      width: 90%;
+  }
+
+  .rech{
+    font-size: large;
+    font-weight: normal;
+  }
+
+  .stl{
+    float: right;margin-left:40%;font-size: 20px;font-weight: normal;
+  }
+
+  .crdCarte{
+    text-align: center; font-weight: bold;color: white;
+  }
+
+  .trans{
+    float: left;width: 30%;
+  }
+
+  .lbl{
+    float: left;width: 30%;font-size: 12px;color: gray;
+  }
+
+  .dte{
+    float: right;margin-left:40%;font-size: 12px;color: gray;
+  }
+
+  .mont{
+    float: right;margin-left:40%;
+  }
+
+  .dv{
+    display: flex;color: black;
+  }

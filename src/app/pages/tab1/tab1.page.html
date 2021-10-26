@@ -1,0 +1,125 @@
+<ion-toolbar color="secondary">
+  <ion-title>
+    Accueil
+  </ion-title>
+</ion-toolbar>
+
+<ion-content color="secondary" [fullscreen]="true">
+  <ion-card class="crd1">
+    <ion-card-content>
+      <h3 class="greeting" style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+        <ion-icon name="wallet"></ion-icon> Ma carte
+      </h3>
+
+      <!-- <ion-card class="crd">
+        <ion-card-header>
+          <ion-card-title style="display: flex;">
+            <div class="iconcrd">
+              <ion-icon size="large" name="card"></ion-icon>
+            </div>
+            <div class="stl">10/2021</div>
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          6456 444 5654 4854<br>
+          21 25 89 67
+        </ion-card-content>
+      </ion-card> -->
+      <ion-card class="crd">
+        <ion-card-header>
+          <ion-card-title class="crdCarte">
+            19,854 TND
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <p style="font-size: 15px;">
+            6456 444 5654 4854<br>
+            21 25 89 67
+          </p>
+        </ion-card-content>
+      </ion-card>
+
+      <!-- <h3 class="greeting">
+      <ion-icon name="cart"></ion-icon> Solde
+    </h3>
+  
+    <ion-card  color="secondary" >
+      <ion-card-header>
+        <ion-card-title class="txt"> 
+         198,54
+        </ion-card-title>
+      </ion-card-header>
+  
+      <ion-card-content>
+       TND
+      </ion-card-content>
+    </ion-card> -->
+      <h3 class="greeting">
+        <ion-icon name="cart"></ion-icon> Fonctions
+      </h3>
+
+      <div class="rechge">
+        <ion-card class="rech" [routerLink]="['recharge-tel']">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="call"></ion-icon>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Recharge
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="rech" [routerLink]="['paiement-qr']">
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon name="qr-code-outline"></ion-icon>
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            Paiement
+          </ion-card-content>
+        </ion-card>
+
+      </div>
+
+      <h3 class="greeting">
+        <ion-icon name="reload"></ion-icon> Transactions recentes
+      </h3><br>
+
+      <div class="dv">
+        <div class="trans">Recharge tel</div><br />
+        <div class="mont"> -1,000 TND </div>
+      </div>
+      <div class="dv">
+        <ion-label class="lbl">Du : telecom</ion-label><br />
+        <div class="dte">25/10/2021 </div>
+      </div>
+      <hr>
+     
+ <div class="dv">
+        <div class="trans">Recharge tel</div><br />
+        <div class="mont"> -1,000 TND </div>
+      </div>
+      <div class="dv">
+        <ion-label class="lbl">Du : telecom</ion-label><br />
+        <div class="dte">25/10/2021 </div>
+      </div>
+      <hr>
+
+      <div class="dv">
+        <div class="trans">Recharge tel</div><br />
+        <div class="mont"> -1,000 TND </div>
+      </div>
+      <div class="dv">
+        <ion-label class="lbl">Du : telecom</ion-label><br />
+        <div class="dte">25/10/2021 </div>
+      </div>
+      <hr>
+
+      
+    </ion-card-content>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar color="secondary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Paiement par QR</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="imgURI != null">
+    <img [src]="imgURI" #imageSrc style="width: 200px;">
+  </div>
+  
+</ion-content>

@@ -1,0 +1,29 @@
+ion-content{
+    p{
+        color: gray;font-size: 12px;margin-top:10%;
+    }
+
+    ion-card{
+        border-left: teal 5px solid;
+        ion-card-title{
+            display: flex;
+        }
+    }
+
+    h1{
+        font-weight: bold;line-height: 35px;
+    }
+    
+}
+
+.txt{
+    float: right;margin-left:35%;font-size: 15px;
+}
+
+.txtStl{
+    float: left;width: 30%;font-size: 12px;
+}
+
+dv{
+    margin-bottom: 5%;
+}
