@@ -1,0 +1,7 @@
+{
+  "name": "ATWallet",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
