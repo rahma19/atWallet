@@ -4,7 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #1248A0;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -234,3 +234,9 @@
     --ion-card-background: #1e1e1e;
   }
 }
+
+ion-app.cameraView ion-nav{opacity:0}
+
+ion-app.cameraView,ion-app.cameraView ion-content,ion-app.cameraView .nav-decor{
+  background: transparent  !important;
+  background-size: 100% 100% !important;}

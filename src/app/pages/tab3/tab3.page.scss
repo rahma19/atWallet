@@ -1,6 +1,6 @@
 .card{
     margin-top: 20%;
-    
+    background-color: white;
 }
 
 .card-img{
@@ -14,3 +14,7 @@
     text-align: justify;
 
 }
+ion-content{
+    --ion-background-color:#ddedfa !important;
+    --ion-item-background: transparent !important;
+  }

@@ -1,10 +1,12 @@
-<ion-toolbar color="secondary">
+<ion-toolbar color="primary">
   <ion-title>
-    Accueil
+    Accueil  
+     <!-- <ion-button expand="full" (click)="logout()">Logout</ion-button> -->
+
   </ion-title>
 </ion-toolbar>
 
-<ion-content color="secondary" [fullscreen]="true">
+<ion-content color="primary" [fullscreen]="true">
   <ion-card class="crd1">
     <ion-card-content>
       <h3 class="greeting" style="font-family:Verdana, Geneva, Tahoma, sans-serif">
@@ -29,14 +31,14 @@
       <ion-card class="crd">
         <ion-card-header>
           <ion-card-title class="crdCarte">
-            19,854 TND
+            {{solde | customCurrencyFormat}} TND <ion-buttons *ngIf="check" (click)="refrech()" style="margin-top: -10%;margin-left: 90%;" color="light"><ion-icon name="refresh-outline"></ion-icon></ion-buttons>
           </ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
           <p style="font-size: 15px;">
-            6456 444 5654 4854<br>
-            21 25 89 67
+            {{user.numeroCompte}}<br>
+            {{user.telephone1}}
           </p>
         </ion-card-content>
       </ion-card>
@@ -61,7 +63,7 @@
       </h3>
 
       <div class="rechge">
-        <ion-card class="rech" [routerLink]="['recharge-tel']">
+        <ion-card class="rech" (click)="nav()">
           <ion-card-header>
             <ion-card-title>
               <ion-icon name="call"></ion-icon>
@@ -72,7 +74,7 @@
           </ion-card-content>
         </ion-card>
 
-        <ion-card class="rech" [routerLink]="['paiement-qr']">
+        <ion-card class="rech" (click)="navQR()" >
           <ion-card-header>
             <ion-card-title>
               <ion-icon name="qr-code-outline"></ion-icon>
@@ -89,37 +91,23 @@
         <ion-icon name="reload"></ion-icon> Transactions recentes
       </h3><br>
 
-      <div class="dv">
-        <div class="trans">Recharge tel</div><br />
-        <div class="mont"> -1,000 TND </div>
+      <div *ngFor="let t of transaction ;let i = index">
+        <div  *ngIf="i<3">
+        <div class="dv">
+          <div *ngIf="t.idTypeTransaction=='1'" class="trans">Recharge tel</div><br />
+          <div *ngIf="t.idTypeTransaction=='2'" class="trans">Paiement</div><br />
+          <div class="mont"> {{t.montantTransaction | customCurrencyFormat}} TND </div>
+        </div>
+        <div class="dv">
+          <ion-label class="lbl">Du : {{t.designation_pretataire}} </ion-label><br />
+          <div class="dte">{{t.dateTransaction | date}} </div>
+        </div>
+        <hr>
       </div>
-      <div class="dv">
-        <ion-label class="lbl">Du : telecom</ion-label><br />
-        <div class="dte">25/10/2021 </div>
-      </div>
-      <hr>
-     
- <div class="dv">
-        <div class="trans">Recharge tel</div><br />
-        <div class="mont"> -1,000 TND </div>
-      </div>
-      <div class="dv">
-        <ion-label class="lbl">Du : telecom</ion-label><br />
-        <div class="dte">25/10/2021 </div>
-      </div>
-      <hr>
 
-      <div class="dv">
-        <div class="trans">Recharge tel</div><br />
-        <div class="mont"> -1,000 TND </div>
       </div>
-      <div class="dv">
-        <ion-label class="lbl">Du : telecom</ion-label><br />
-        <div class="dte">25/10/2021 </div>
-      </div>
-      <hr>
-
       
     </ion-card-content>
   </ion-card>
+  
 </ion-content>

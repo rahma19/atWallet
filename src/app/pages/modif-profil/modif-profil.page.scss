@@ -1,0 +1,138 @@
+ion-buttons,ion-title{
+    margin-top: 15%;
+  }
+ion-content{
+    --ion-background-color:#ddedfa !important;
+    --ion-item-background: transparent !important;
+    ion-buttons{
+        margin-top: 5%;
+    }
+    ion-input:hover{
+      color: #1248A0;
+    }
+    }
+    
+    ion-icon {
+      padding: 10px;
+      font-size: 30px;
+      color: var(--brand-primary);
+      font-weight: 500;
+    }
+    
+    h1.greeting {
+      font-size: 24px;
+      color: #000000;
+    }
+    
+    p.greeting-tag {
+      color: var(--brand-tertiary);
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 23px;
+    }
+    
+    .image {
+      text-align: center;
+    }
+    
+    .card-img {
+      width: 100px;
+      margin-top: -50px;
+    }
+    
+    .crd1{
+        margin-top: 8%;
+    }
+
+    .crd{
+      margin-top: 85px;
+      height: 85%;
+     
+    }
+  
+   .wrapform{
+     margin-top: 10%;
+   }
+  
+   .errors{
+    font-size: 12px;
+    color: red;
+  }
+  
+    .form {
+      background: #fff;
+      padding: 0 20px;
+      height:100% ;
+        // margin:3%;
+     // margin-bottom: 5%;
+      border-radius: 50px;
+
+      border-bottom-left-radius: 0%;
+      border-bottom-right-radius: 0%;
+    
+      ion-grid {
+        padding-bottom: 0;
+        padding-top: 0;
+    
+        ion-row {
+          margin: 20px 0;
+    
+          ion-col {
+            ion-label {
+              font-style: normal;
+              font-weight: 500;
+              //line-height: 23px;
+              color: #A4A4A4;
+            } 
+    
+            &.value-col {
+              font-style: normal;
+              //font-weight: bold;
+              font-size: 14px;
+             // line-height: 23px;
+              color: #000;
+              background: rgb(236, 236, 236);
+              padding: 15px;
+              border-radius: 10px;
+            }
+          }
+    
+          &.spaced-col {
+            text-align: center;
+            ion-col:nth-child(odd) {
+              margin-right: 20px;
+            }
+    
+            &.spaced-col > ion-col:nth-child(even) {
+              margin-left: 20px;
+            }
+    
+            &.spaced-col > ion-col:nth-child(1) {
+              margin-bottom: 20px;
+            }
+    
+            &.spaced-col > ion-col:nth-child(2) {
+              margin-bottom: 20px;
+            }
+          }
+        }
+      }
+    }
+    
+    ion-button {
+      --background: var(--brand-primary);
+      font-size: 20px;
+      text-transform: none;
+      --border-radius: 20px;
+      height: 40px;
+      width: 95%;
+      margin-top: 14%;
+   // margin-left: 25%;
+ //   margin-bottom: 5%;
+      &::part(native) {
+        border-radius: 20px;
+      }
+    }
+  
+   

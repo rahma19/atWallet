@@ -1,0 +1,18 @@
+ion-content{
+    --ion-background-color:#ddedfa !important;
+    --ion-item-background: transparent !important;
+ion-button{
+    margin-left: 20%;
+    &::part(native) {
+        border-radius: 20px;
+      }
+}
+ion-item{
+   margin:5%
+}
+h2{
+    color: #1248A0;
+    font-weight: bold;
+    margin-top: 20%;
+}
+}

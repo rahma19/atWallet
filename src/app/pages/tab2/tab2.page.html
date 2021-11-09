@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-toolbar color="secondary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="#"></ion-back-button>
+  <ion-toolbar color="primary">
+    <ion-buttons (click)="return()" slot="start">
+     <ion-icon name="arrow-back"></ion-icon>
     </ion-buttons>
     <!-- <ion-title>
     </ion-title> -->
@@ -9,91 +9,24 @@
 </ion-header>
 
 <ion-content>
+
   <div style="margin: 3%;">
-    <h1>  
-          Historique des transactions
-    </h1>
-
-  <ion-searchbar showCancelButton="focus" placeholder="recherche"></ion-searchbar>
-  <p>Derniere transaction etait le 25/10/2021</p>
-
+    <h1>  Historique des transactions </h1>
+  <ion-searchbar color="light" showCancelButton="focus" placeholder="recherche"></ion-searchbar>
+  <p>Derniere transaction etait le {{derniereTransa | date}}</p>
   </div>
 
-  <div class="dv">
+  <div *ngFor="let t of transaction;" class="dv">
     <ion-card>
-      <ion-card-header>
-        <ion-card-title>
-          <div style="font-size: 15px;">
-            Recharge tel
-          </div>
-          <div class="txt">-1000 TND</div>
-        </ion-card-title>
-      </ion-card-header>
-
       <ion-card-content>
         <div style="display: flex;">
-          <ion-label>Du : telecom</ion-label><br />
-          <div class="txt">25/10/2021 </div>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
-
-  <div class="dv">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>
-          <div style="font-size: 15px;">
-            Recharge tel
+        <div *ngIf="t.idTypeTransaction=='1'"style="font-size: 15px;">Recharge tel</div><br />
+            <div *ngIf="t.idTypeTransaction=='2'"style="font-size: 15px;">Paiement</div><br />
+          <b style="color: rgb(219, 22, 22);" class="txt">- {{t.montantTransaction}} TND</b>
           </div>
-          <div class="txt">-1000 TND</div>
-        </ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content>
         <div style="display: flex;">
           <ion-label>Du : telecom</ion-label><br />
-          <div class="txt">25/10/2021 </div>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
-
-  <div class="dv">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>
-          <div style="font-size: 15px;">
-            Recharge tel
-          </div>
-          <div class="txt">-1000 TND</div>
-        </ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content>
-        <div style="display: flex;">
-          <ion-label>Du : telecom</ion-label><br />
-          <div class="txt">25/10/2021 </div>
-        </div>
-      </ion-card-content>
-    </ion-card>
-  </div>
-
-  <div class="dv">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>
-          <div style="font-size: 15px;">
-            Recharge tel
-          </div>
-          <div class="txt">-1000 TND</div>
-        </ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content>
-        <div style="display: flex;">
-          <ion-label>Du : telecom</ion-label><br />
-          <div class="txt">25/10/2021 </div>
+          <div class="txt">{{t.dateTransaction | date}} </div>
         </div>
       </ion-card-content>
     </ion-card>

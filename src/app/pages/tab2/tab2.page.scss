@@ -1,10 +1,14 @@
 ion-content{
+    --ion-background-color:#ddedfa !important;
+    --ion-item-background: transparent !important;
+  
     p{
         color: gray;font-size: 12px;margin-top:10%;
     }
 
     ion-card{
         border-left: teal 5px solid;
+        background-color: white;
         ion-card-title{
             display: flex;
         }
@@ -17,7 +21,7 @@ ion-content{
 }
 
 .txt{
-    float: right;margin-left:35%;font-size: 15px;
+    float: right;margin-left:30%;font-size: 15px;
 }
 
 .txtStl{

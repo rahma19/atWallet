@@ -2,3 +2,7 @@ ion-app{
   background-color: rgb(245, 245, 245);
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
+.transparent-body {
+  background: none transparent !important;
+  opacity: 0 !important;
+}

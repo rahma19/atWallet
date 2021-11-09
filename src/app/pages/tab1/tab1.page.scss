@@ -4,8 +4,10 @@ ion-toolbar{
 ion-title{
   margin-top: 15%;
 }
-ion-content {
-    --background: var(--brand-secondary);
+ion-content{
+  --ion-background-color:#ddedfa !important;
+  --ion-item-background: transparent !important;
+
    
     hr{
       background-color: gray;
@@ -31,7 +33,7 @@ ion-content {
   }
 
   .crd{
-    background-color: rgb(14, 153, 153);
+    background-color: #1248A0;
     color: white;
     margin-left: 4%;
     border-radius: 5%;
@@ -42,9 +44,11 @@ ion-content {
   }
 
   .crd1{
-    border-top-left-radius:8%;
-    border-top-right-radius: 8%;
-    width: 100%;margin: 0;height: 100%;background-color: rgb(245, 245, 245);
+    border-top-left-radius:2em;
+    border-top-right-radius: 2em;
+    width: 100%;margin: 0;height: auto;
+    background-color:#ddedfa !important;
+  
   }
 
   ion-card{
@@ -52,6 +56,7 @@ ion-content {
   }
 
   .rech{
+    background-color: white;
     font-size: large;
     font-weight: normal;
   }

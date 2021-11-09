@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="secondary">
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="#"></ion-back-button>
     </ion-buttons>
@@ -14,7 +14,43 @@
       <div class="image">
         <img src="../../../assets/img/card.PNG" class="card-img" />
       </div>
-      <ion-grid style="margin-bottom: 5%; ">
+      <form #f="ngForm" ><!--[formGroup]="cred"-->
+        <div class="wrapform">
+          <ion-item>
+            <!-- <img width="70px" *ngIf="numtel[0]==2" src="../../../assets/img/ooredoo.jpg" />
+            <img width="50px" *ngIf="numtel[0]==9" src="../../../assets/img/telecom.jfif" />
+            <img width="40px" *ngIf="numtel[0]==5" src="../../../assets/img/orange.png" /> -->
+
+            <img width="35px" height="35px" [src]="path"  />
+            <ion-input type="text" (keyup)="check()" [(ngModel)]="tel" name="numtel" placeholder="numTel"><!--formControlName="numTel" [(ngModel)]="user.telephone1"-->
+              <!-- <ion-icon name="call-outline"></ion-icon> -->
+            </ion-input>
+          </ion-item>
+          <div *ngIf="(numTel.dirty || numTel.touched) && numTel.errors" class="errors">
+            <span *ngIf="numTel.errors?.required">numTel est obligatoire</span>
+            <!-- <span *ngIf="numTel.errors?.numTel">Email est invalide</span> -->
+          </div>
+
+          <div style="text-align: center;margin: 15px;">
+            <ion-checkbox name="operateur" value="1" color="primary"></ion-checkbox><img style="padding-right: 10px;" width="80px" src="../../../assets/img/ooredoo.jpg" />
+            <ion-checkbox name="operateur" value="2" color="secondary"></ion-checkbox>  <img style="padding-right: 10px;" width="60px" src="../../../assets/img/telecom.jfif" />
+<ion-checkbox name="operateur" value="3" color="danger"></ion-checkbox> <img style="padding-right: 10px;" width="48px" src="../../../assets/img/orange.png" />
+
+          </div>
+
+          <ion-item>
+            <ion-input type="text" name="montant" placeholder="Montant"><!--formControlName="montant"-->
+              <ion-icon name="cash-outline"></ion-icon>
+            </ion-input>
+          </ion-item>
+          <div *ngIf="(montant.dirty || montant.touched) && montant.errors" class="errors">
+            <span *ngIf="montant.errors?.required">montant est obligatoire</span>
+            <!-- <span *ngIf="montant.errors?.montant">Email est invalide</span> -->
+          </div>
+
+        </div>
+      </form>
+      <!-- <ion-grid style="margin-bottom: 5%; ">
         <ion-row>
           <ion-col>
             <ion-label>
@@ -34,23 +70,16 @@
             </ion-label>
           </ion-col>
         </ion-row>
-        <!-- <ion-row class="spaced-col">
-          <ion-col class="value-col">
-            K1,000
-          </ion-col>
-          <ion-col class="value-col">
-            K5,000
-          </ion-col>
-        </ion-row> -->
+       
         <ion-row style="margin-bottom: 20%;">
           <ion-col class="value-col" style="margin-bottom: 20%;">
             1000
           </ion-col>
 
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
     </div>
-    <ion-button color="secondary">Valider</ion-button>
+    <ion-button type="submit" [disabled]="!f.valid" (click)="submit(f)" color="secondary">Valider</ion-button>
 
   </div>
 </ion-content>

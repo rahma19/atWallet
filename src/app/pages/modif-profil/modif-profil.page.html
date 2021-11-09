@@ -1,0 +1,65 @@
+<ion-toolbar color="primary">
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="#"></ion-back-button>
+  </ion-buttons>
+  <ion-title>Modifier Profil</ion-title>
+</ion-toolbar>
+
+<ion-content color="primary">
+  <div class="crd">
+    <div class="form">
+      <div class="image">
+        <img src="../../../assets/img/user1.png" class="card-img" />
+        <h4 style="color: teal;">{{user.nom}} {{user.prenom}}</h4>
+      </div>
+      <form #f="ngForm">
+
+        <div class="crd1">
+          <ion-item>
+            <ion-label position="floating">Nom</ion-label>
+            <ion-input type="text" name="nom" [(ngModel)]="user.nom" #name="ngModel" required></ion-input>
+            <div *ngIf="name.invalid && (name.dirty || name.touched)" class="errors">
+              <div *ngIf="name.errors?.['required']">
+                le nom ne doit pas etre null.
+              </div>
+            </div>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Prenom</ion-label>
+            <ion-input type="text" name="prenom" [(ngModel)]="user.prenom" #prenom="ngModel" required></ion-input>
+            <div *ngIf="prenom.invalid && (prenom.dirty || prenom.touched)" class="errors">
+              <div *ngIf="prenom.errors?.['required']">
+                le prenom ne doit pas etre null.
+              </div>
+            </div>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Email</ion-label>
+            <ion-input disabled name="mail" [(ngModel)]="user.mail"></ion-input>
+          </ion-item>
+
+          <ion-item>
+            <ion-label position="floating">Telephone</ion-label>
+            <ion-input type="text" name="telephone1" [(ngModel)]="user.telephone1" #tel="ngModel" pattern="^[0-9]*$"
+              maxlength="8" minlength="8"></ion-input>
+            <div *ngIf="tel.invalid && (tel.dirty || tel.touched)" class="errors">
+              <div *ngIf="tel.errors?.pattern ">
+                le telephone doit contenir que des chiffres.
+              </div>
+              <div *ngIf=" tel.errors?.minlength ">
+                le telephone etre de 8 characteres.
+              </div>
+            </div>
+          </ion-item>
+
+        </div>
+
+        <ion-button type="submit" [disabled]="!f.valid" (click)="submit(f)" color="secondary">Confirmer</ion-button>
+
+      </form>
+    </div>
+  </div>
+
+</ion-content>

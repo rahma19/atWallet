@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { PaiementQrPageRoutingModule } from './paiement-qr-routing.module';
 
+
 import { PaiementQrPage } from './paiement-qr.page';
 
 @NgModule({
