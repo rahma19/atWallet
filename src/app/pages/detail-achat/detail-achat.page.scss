@@ -1,0 +1,23 @@
+ion-content{
+    --ion-background-color:#ddedfa !important;
+    --ion-item-background: transparent !important;
+    ion-card{
+        background-color: white;
+        box-shadow: 0 8px 17px 0 rgba(231, 231, 231, 0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        transition: all .55s ease-in-out;
+        padding: 4%;
+        b{
+            color: teal;
+        }
+        ion-item{
+            padding-bottom: 8%;
+
+        }
+        div{
+            margin: 1%;
+        }
+        .dv{
+            margin-top: 5%;
+        }
+    }
+}

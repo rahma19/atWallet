@@ -1,31 +1,29 @@
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons (click)="return()" slot="start">
-     <ion-icon name="arrow-back"></ion-icon>
+      <ion-icon name="arrow-back"></ion-icon>
     </ion-buttons>
-    <!-- <ion-title>
-    </ion-title> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
   <div style="margin: 3%;">
-    <h1>  Historique des transactions </h1>
-  <ion-searchbar color="light" showCancelButton="focus" placeholder="recherche"></ion-searchbar>
-  <p>Derniere transaction etait le {{derniereTransa | date}}</p>
+    <h1> Historique des transactions </h1>
+    <ion-searchbar color="light" showCancelButton="focus" placeholder="recherche"></ion-searchbar>
+    <p>Derniere transaction etait le {{derniereTransa | date}}</p>
   </div>
 
   <div *ngFor="let t of transaction;" class="dv">
     <ion-card>
       <ion-card-content>
         <div style="display: flex;">
-        <div *ngIf="t.idTypeTransaction=='1'"style="font-size: 15px;">Recharge tel</div><br />
-            <div *ngIf="t.idTypeTransaction=='2'"style="font-size: 15px;">Paiement</div><br />
+          <div *ngIf="t.idTypeTransaction=='1'" style="font-size: 15px;">Recharge tel</div><br />
+          <div *ngIf="t.idTypeTransaction=='2'" style="font-size: 15px;">Paiement</div><br />
           <b style="color: rgb(219, 22, 22);" class="txt">- {{t.montantTransaction}} TND</b>
-          </div>
+        </div>
         <div style="display: flex;">
-          <ion-label>Du : telecom</ion-label><br />
+          <ion-label>Du : {{t.designation_pretataire}}</ion-label><br />
           <div class="txt">{{t.dateTransaction | date}} </div>
         </div>
       </ion-card-content>

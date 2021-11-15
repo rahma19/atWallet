@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   url: 'http://10.12.113.152:15201',
-  urlCompte: 'http://10.12.113.152:15270/api/Compte'
+  urlCompte: 'http://10.12.113.152:15270/api/Compte',
+  urlPay: 'http://10.12.113.152:15272'
 };
 
 /*

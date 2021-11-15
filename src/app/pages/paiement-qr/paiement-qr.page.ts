@@ -1,6 +1,12 @@
+import { Location } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
-import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
+import { Router } from '@angular/router';
+import {
+  BarcodeScanner,
+  BarcodeScannerOptions,
+} from '@ionic-native/barcode-scanner/ngx';
+import { of } from 'rxjs';
+import { TransactionService } from 'src/app/core/services/transaction.service';
 
 @Component({
   selector: 'app-paiement-qr',
@@ -8,124 +14,139 @@ import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner/ngx';
   styleUrls: ['./paiement-qr.page.scss'],
 })
 export class PaiementQrPage implements OnInit {
-  //camera:any;
-  imgURI: string = null;
-  constructor(private camera: Camera, private qrScanner: QRScanner) {
 
-  }
-  ionViewDidEnter() {
-    this.openQrSCanner();
+  data: any[] = [];
+  j: number = 0;
+  qr = "00020101021252043005530378854042.455802TN5915MAGASIN MANAR I6007MANAR I6104209226430015tn.atw.atwallet01201011210740000157882162590203***0305AZIZA052021ATWLT100101000000107086410010111034006304D082";
+  id = this.qr.substr(0, 2);
+  l = 0;
+  i: number;
+  constructor(private barcodeScanner: BarcodeScanner,
+    private transactionService: TransactionService,
+    private location: Location,
+    private router: Router
+  ) { }
 
 
+  decoderQR() {
+    this.transactionService.achat = this.data; //qrcode;
+    this.router.navigate(['/achat']);
 
-    // const options: CameraOptions = {
-    //   quality: 100,
-    //   destinationType: this.camera.DestinationType.FILE_URI,
-    //   encodingType: this.camera.EncodingType.JPEG,
-    //   mediaType: this.camera.MediaType.PICTURE
+    // while (this.id != '63') {
+    if (this.id != '62' && this.id != '26') {
+      this.j += 2;
+      this.l = Number(this.qr.substr(this.j, 2));
+
+      let val = this.qr.substr(this.j + 2, this.l);
+      let x = this.id;
+      this.data.push({ id: x, val });
+
+      this.j += this.l;
+      this.j += 2;
+      console.log(this.l);
+
+      this.id = this.qr.substr(this.j, 2);
+
+      //this.id = id;
+    }
+    else {
+      let l = Number(this.qr.substr(this.j + 2, 2));
+
+      this.j = this.j + 2;
+      this.i = 0;
+      let res = this.qr.substr(this.j + 2, l);
+      console.log(res);
+      console.log(this.j, this.id, this.i);
+
+      this.id = res.substr(this.i, 2); //this.id +
+      console.log(this.id);
+
+      let ln = 0;
+      let valres;
+      while (this.i < l) {
+        this.i = this.i + 2;
+        ln = Number(res.substr(this.i, 2));
+        valres = res.substr(this.i + 2, ln);
+        console.log(valres);
+        console.log(ln);
+        if (this.id != '')
+          this.data.push({ id: this.id, val: valres });
+
+        this.i += ln;
+        console.log(this.id);
+
+        this.id = res.substr(this.i + 2, 2);
+        console.log(this.id);
+
+        this.i = this.i + 2;
+        console.log(this.i);
+
+      }
+      console.log(this.id);
+      this.j += this.i;
+      console.log(this.j);
+
+      //this.id = this.qr.substr(this.j + 2, 2)
+      console.log(this.id);
+
+    }
+    //this.j += this.i;
+    // let ln = Number(qr.substr(this.j + 4, 2));
+    // let valres = qr.substr(this.j + 2, ln);
+    // this.data.push({ id: this.id, val: valres });
+    console.log(this.data);
+
     // }
-
-    // this.camera.getPicture(options).then((imageData) => {
-    //   // imageData is either a base64 encoded string or a file URI
-    //   // If it's base64 (DATA_URL):
-    //   alert(imageData)
-    //   let base64Image = 'data:image/jpeg;base64,' + imageData;
-    // }, (err) => {
-    //   alert(err)
-    //   // Handle error
-    // });
   }
 
-  openQrSCanner() {
-    this.qrScanner.prepare()
-      .then((status: QRScannerStatus) => {
-        if (status.authorized) {
-          // camera permission was granted
+  scanBarcode() {
+    const options: BarcodeScannerOptions = {
+      preferFrontCamera: false,
+      showFlipCameraButton: true,
+      showTorchButton: true,
+      torchOn: false,
+      prompt: 'Place a barcode inside the scan area',
+      resultDisplayDuration: 500,
+      formats: 'EAN_13,EAN_8,QR_CODE,PDF_417 ',
+      orientation: 'portrait',
+    };
 
-          // start scanning
-          this.qrScanner.show();
-          // window.document.querySelector('ion-app').classList.add('transparent-body');
+    this.barcodeScanner
+      .scan(options)
+      .then((barcodeData) => {
+        console.log('Barcode data', barcodeData);
+        const qrcode = JSON.stringify(barcodeData.text);
+        this.decoderQR();
+        this.transactionService.achat = this.data; //qrcode;
+        this.router.navigate(['/achat']);
+        // let j = 0;
+        // let id = qrcode.substr(0, 2);
+        // while (id != "63") {
+        // if (id != "62" && id != "26") {
+        //   j += 2;
+        //   let l = Number(qrcode.substr(j, 2));
+        //   let val = qrcode.substr(j + 2, l);
+        //   this.data.push(id, val);
+        //   j += l;
+        //   id = qrcode.substr(j + 2, 2);
+        //   j += 2;
+        //   }
+        // }
 
-          this.qrScanner.scan().subscribe((text: string) => {
-
-            alert('Scanned something');
-
-            // window.document.querySelector('ion-app').classList.remove('transparent-body');
-            this.qrScanner.hide(); // hide camera preview
-
-
-          }, err => {
-            alert('Scanned something error');
-
-          });
-
-
-        } else if (status.denied) {
-          alert('gbddfggdbf');
-
-          // camera permission was permanently denied
-          // you must use QRScanner.openSettings() method to guide the user to the settings page
-          // then they can grant the permission from there
-        } else {
-          alert('gbbf');
-          // permission was denied, but not permanently. You can ask for permission again at a later time.
-        }
+        //  alert(id);
       })
-      .catch((e: any) => console.log('Error is', e));
+      .catch((err) => {
+        console.log('Error', err);
+      });
   }
 
-  // @ViewChild('pwaphoto') pwaphoto: ElementRef;
-
-
-  // constructor() {
-
-  // }
-
-  // openPWAPhotoPicker() {
-  //   if (this.pwaphoto == null) {
-  //     return;
-  //   }
-
-  //   this.pwaphoto.nativeElement.click();
-  // }
-
-  // uploadPWA() {
-
-  //   if (this.pwaphoto == null) {
-  //     return;
-  //   }
-
-  //   const fileList: FileList = this.pwaphoto.nativeElement.files;
-
-  //   if (fileList && fileList.length > 0) {
-  //     this.firstFileToBase64(fileList[0]).then((result: string) => {
-  //       this.imgURI = result;
-  //     }, (err: any) => {
-  //       // Ignore error, do nothing
-  //       this.imgURI = null;
-  //     });
-  //   }
-  // }
-
-  // private firstFileToBase64(fileImage: File): Promise<{}> {
-  //   return new Promise((resolve, reject) => {
-  //     let fileReader: FileReader = new FileReader();
-  //     if (fileReader && fileImage != null) {
-  //       fileReader.readAsDataURL(fileImage);
-  //       fileReader.onload = () => {
-  //         resolve(fileReader.result);
-  //       };
-
-  //       fileReader.onerror = (error) => {
-  //         reject(error);
-  //       };
-  //     } else {
-  //       reject(new Error('No file found'));
-  //     }
-  //   });
-  // }
-
-  ngOnInit() {
+  ionViewDidEnter() {
   }
 
+  return() {
+    this.location.back();
+
+  }
+
+  ngOnInit() { }
 }

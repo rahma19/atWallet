@@ -10,8 +10,10 @@ import { environment } from 'src/environments/environment';
 export class TransactionService {
   url = "http://10.12.113.152:15271/api/Transaction";
   urlCompte = environment.urlCompte;
+  urlPay = environment.urlPay;
   transactionSubject: BehaviorSubject<any[]>;
   soldeSubject: BehaviorSubject<any[]>;
+  achat: any;
 
   constructor(private http: HttpClient) {
     this.transactionSubject = new BehaviorSubject<any[]>(JSON.parse(localStorage.getItem('transactions')));
@@ -20,6 +22,10 @@ export class TransactionService {
 
   public get allTransactions$(): Observable<any> {
     return this.transactionSubject.asObservable();
+  }
+
+  public get solde$(): Observable<any> {
+    return this.soldeSubject.asObservable();
   }
 
   getAllTransaction(datedeb, datefin, idCompte): Promise<any> {
@@ -55,7 +61,14 @@ export class TransactionService {
     this.transactionSubject.next(JSON.parse(localStorage.getItem('transactions')));
   }
 
-  payment(form) {
-    return this.http.post<any>(this.url + `/api/login`, form);
+  async payment(form) {
+    return this.http.get<any>(this.urlPay + `/api/Paiement/EPaiement?id_Compte=${form.id_Compte}&montant=${form.montant}&id_prestataire=${form.id_prestataire}&id_canal_paiement=${form.id_canal_paiement}`).pipe(take(1)).subscribe(async (res) => {
+      await this.getSolde(form.id_Compte);
+      // this.updateStorage(res);
+      let us = JSON.parse(localStorage.getItem('user'));
+      us.solde = this.soldeSubject.value;
+      localStorage.setItem("user", JSON.stringify(us));
+
+    });
   }
 }

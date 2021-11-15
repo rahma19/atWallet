@@ -6,15 +6,16 @@
 </ion-toolbar>
 
 <ion-content color="primary">
+
   <div class="crd">
-    <div class="form">
+      
       <div class="image">
         <img src="../../../assets/img/user1.png" class="card-img" />
         <h4 style="color: teal;">{{user.nom}} {{user.prenom}}</h4>
       </div>
-      <form #f="ngForm">
 
-        <div class="crd1">
+      <form #f="ngForm" class="crd1">
+
           <ion-item>
             <ion-label position="floating">Nom</ion-label>
             <ion-input type="text" name="nom" [(ngModel)]="user.nom" #name="ngModel" required></ion-input>
@@ -54,12 +55,9 @@
             </div>
           </ion-item>
 
-        </div>
-
-        <ion-button type="submit" [disabled]="!f.valid" (click)="submit(f)" color="secondary">Confirmer</ion-button>
-
+          <ion-button type="submit" [disabled]="!f.valid" (click)="submit(f)" color="secondary">Confirmer</ion-button>
       </form>
-    </div>
+
   </div>
 
 </ion-content>

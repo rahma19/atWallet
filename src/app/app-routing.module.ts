@@ -3,6 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { AutoLoginGuard } from './guards/auto-login.guard';
 import { IntroGuard } from './guards/intro.guard';
+import { DetailAchatPage } from './pages/detail-achat/detail-achat.page';
+import { PaiementQrPage } from './pages/paiement-qr/paiement-qr.page';
+import { RechargeTelPage } from './pages/recharge-tel/recharge-tel.page';
 
 const routes: Routes = [
   {
@@ -22,11 +25,16 @@ const routes: Routes = [
   },
   {
     path: 'recharge-tel',
-    loadChildren: () => import('./pages/recharge-tel/recharge-tel.module').then(m => m.RechargeTelPageModule)
+    component: RechargeTelPage
+    //  loadChildren: () => import('./pages/recharge-tel/recharge-tel.module').then(m => m.RechargeTelPageModule)
   },
   {
     path: 'paiement-qr',
-    loadChildren: () => import('./pages/paiement-qr/paiement-qr.module').then(m => m.PaiementQrPageModule)
+    component: PaiementQrPage
+    // loadChildren: () => import('./pages/paiement-qr/paiement-qr.module').then(m => m.PaiementQrPageModule)
+  }, {
+    path: 'achat',
+    component: DetailAchatPage
   },
   {
     path: 'login',
@@ -37,10 +45,16 @@ const routes: Routes = [
     path: '',
     redirectTo: '/intro',
     pathMatch: 'full'
-  },  {
+  },
+  {
     path: 'modif-profil',
-    loadChildren: () => import('./pages/modif-profil/modif-profil.module').then( m => m.ModifProfilPageModule)
+    loadChildren: () => import('./pages/modif-profil/modif-profil.module').then(m => m.ModifProfilPageModule)
+  },
+  {
+    path: 'detail-achat',
+    loadChildren: () => import('./pages/detail-achat/detail-achat.module').then(m => m.DetailAchatPageModule)
   }
+
 
 
 ];

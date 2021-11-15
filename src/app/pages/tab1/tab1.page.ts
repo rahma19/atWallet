@@ -22,30 +22,37 @@ export class Tab1Page implements OnInit {
   solde: any;
   tt: Observable<any[]>
   check: any;
+  loading = false;
 
   constructor(private authService: AuthService, private alertController: AlertController, private router: Router, public toastController: ToastController, private transService: TransactionService, private connectivity: NetworkService) {
 
   }
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
+    // this.loading = true;
+
     this.user = this.authService.payload;
-    this.solde = this.user.solde;
 
     this.connectivity.appIsOnline$.subscribe(async online => {
 
       console.log(online)
 
       if (online) {
-        await this.getAllTransactions();
+        await this.refrech();
+        this.getAllTransactions();
 
         console.log("App is online")
 
       } else {
-        console.log(this.transService.transactionSubject.value);
-        // this.user = this.authService.payload;
-        // this.solde = this.user.solde;
-        this.transaction = this.transService.transactionSubject.value;
-        console.log("App is offline")
+        //  this.solde = this.user.solde;
+        this.transService.solde$.subscribe((res) => {
+          this.solde = res;
+        });
+        this.transService.allTransactions$.subscribe(res => {
+          this.transaction = res;
+          console.log(this.transaction);
+
+        }); console.log("App is offline")
 
       }
       this.check = online;
@@ -53,16 +60,15 @@ export class Tab1Page implements OnInit {
     })
     console.log(this.transaction);
 
-    // var d = new Date();
-    // this.datedeb = moment(d).format("YYYY-MM-DD");
+
 
   }
 
   getAllTransactions() {
-
+    var d = new Date();
+    this.datefin = moment(d).format("YYYY-MM-DD");
     this.datedeb = '2021-10-25';
-    let datefin = '2021-10-28';
-    this.transService.getAllTransaction(this.datedeb, datefin, this.user.idCompte);
+    this.transService.getAllTransaction(this.datedeb, this.datefin, this.user.idCompte);
     this.transService.allTransactions$.subscribe(res => {
       this.transaction = res;
       console.log(this.transaction);
@@ -71,9 +77,11 @@ export class Tab1Page implements OnInit {
 
   }
 
-  refrech() {
+  async refrech() {
     this.transService.getSolde(this.user.idCompte);
-    this.solde = this.transService.soldeSubject.value;
+    this.transService.solde$.subscribe((res) => {
+      this.solde = res;
+    });
   }
 
 
@@ -88,7 +96,7 @@ export class Tab1Page implements OnInit {
     }
     else {
       const alert = await this.alertController.create({
-        header: 'Échec de la connexion',
+        header: 'Échec',
         message: 'vérifier votre connexion',
         buttons: ['OK'],
       });
@@ -103,7 +111,7 @@ export class Tab1Page implements OnInit {
     }
     else {
       const alert = await this.alertController.create({
-        header: 'Échec de la connexion',
+        header: 'Échec',
         message: 'vérifier votre connexion',
         buttons: ['OK'],
       });

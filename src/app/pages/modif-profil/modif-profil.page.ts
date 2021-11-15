@@ -45,6 +45,7 @@ export class ModifProfilPage implements OnInit {
     console.log(form.value);
     if (this.check) {
 
+
     } else {
       const alert = await this.alertController.create({
         header: 'Échec',

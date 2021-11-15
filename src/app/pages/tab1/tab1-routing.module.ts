@@ -10,13 +10,11 @@ const routes: Routes = [
     component: Tab1Page,
   }, {
     path: 'recharge-tel',
-    component: RechargeTelPage
-    //loadChildren: () => import('../recharge-tel/recharge-tel.module').then(m => m.RechargeTelPageModule)
+    loadChildren: () => import('../recharge-tel/recharge-tel.module').then(m => m.RechargeTelPageModule)
   },
   {
     path: 'paiement-qr',
-    component: PaiementQrPage
-    // loadChildren: () => import('../paiement-qr/paiement-qr.module').then(m => m.PaiementQrPageModule)
+    loadChildren: () => import('../paiement-qr/paiement-qr.module').then(m => m.PaiementQrPageModule)
   }
 ];
 

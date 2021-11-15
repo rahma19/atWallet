@@ -1,31 +1,20 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="#"></ion-back-button>
-    </ion-buttons>
+    <ion-buttons (click)="return()" slot="start">
+      <ion-icon name="arrow-back"></ion-icon>
+     </ion-buttons>
     <ion-title>Paiement commercant</ion-title>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
-  <!-- <div *ngIf="imgURI != null">
-    <img [src]="imgURI" #imageSrc style="width: 200px;">
-  </div> -->
   <ion-item>
     <h2 >
       Scanner QR <b><ion-icon name="arrow-down"></ion-icon></b>
     </h2>
   </ion-item>
+
    <img style="margin: 15%;margin-top: 15%;"  width="70%" src="../../../assets/img/qr.png" />
-   <ion-button color="secondary" (click)="ionViewDidEnter()">   Scanner QR code  </ion-button> 
-  <!-- <button ion-button (click)="openPWAPhotoPicker()">Let's go!</button>
-
-  <div *ngIf="imgURI != null">
-    <img [src]="imgURI" #imageSrc style="width: 200px;">
-  </div>
-
-  <div id="pwa">
-    <input type="file" id="pwaphoto" #pwaphoto accept="image/x-png,image/jpeg" (change)="uploadPWA()">
-  </div> -->
-
+<div>
+  <ion-button class="row" color="secondary" (click)="decoderQR()">   Scanner QR code  </ion-button> 
+</div> 
 </ion-content>

@@ -1,33 +1,20 @@
-<ion-toolbar color="primary">
+<ion-toolbar [hidden]="loading " color="primary">
   <ion-title>
     Accueil  
      <!-- <ion-button expand="full" (click)="logout()">Logout</ion-button> -->
-
   </ion-title>
+  <ion-buttons  slot="end" (click)="logout()">
+  <ion-button><ion-icon name="log-out-outline"></ion-icon></ion-button>
+  </ion-buttons>
 </ion-toolbar>
 
-<ion-content color="primary" [fullscreen]="true">
-  <ion-card class="crd1">
+<ion-content [hidden]="loading " color="primary" [fullscreen]="true">
+  <ion-card  class="crd1">
     <ion-card-content>
-      <h3 class="greeting" style="font-family:Verdana, Geneva, Tahoma, sans-serif">
+      <h3 class="greeting" >
         <ion-icon name="wallet"></ion-icon> Ma carte
       </h3>
 
-      <!-- <ion-card class="crd">
-        <ion-card-header>
-          <ion-card-title style="display: flex;">
-            <div class="iconcrd">
-              <ion-icon size="large" name="card"></ion-icon>
-            </div>
-            <div class="stl">10/2021</div>
-          </ion-card-title>
-        </ion-card-header>
-
-        <ion-card-content>
-          6456 444 5654 4854<br>
-          21 25 89 67
-        </ion-card-content>
-      </ion-card> -->
       <ion-card class="crd">
         <ion-card-header>
           <ion-card-title class="crdCarte">
@@ -43,21 +30,6 @@
         </ion-card-content>
       </ion-card>
 
-      <!-- <h3 class="greeting">
-      <ion-icon name="cart"></ion-icon> Solde
-    </h3>
-  
-    <ion-card  color="secondary" >
-      <ion-card-header>
-        <ion-card-title class="txt"> 
-         198,54
-        </ion-card-title>
-      </ion-card-header>
-  
-      <ion-card-content>
-       TND
-      </ion-card-content>
-    </ion-card> -->
       <h3 class="greeting">
         <ion-icon name="cart"></ion-icon> Fonctions
       </h3>
@@ -66,7 +38,7 @@
         <ion-card class="rech" (click)="nav()">
           <ion-card-header>
             <ion-card-title>
-              <ion-icon name="call"></ion-icon>
+              <ion-icon color="primary" name="call"></ion-icon>
             </ion-card-title>
           </ion-card-header>
           <ion-card-content>
@@ -77,7 +49,7 @@
         <ion-card class="rech" (click)="navQR()" >
           <ion-card-header>
             <ion-card-title>
-              <ion-icon name="qr-code-outline"></ion-icon>
+              <ion-icon color="primary" name="qr-code-outline"></ion-icon>
             </ion-card-title>
           </ion-card-header>
           <ion-card-content>
@@ -109,5 +81,9 @@
       
     </ion-card-content>
   </ion-card>
-  
+
+</ion-content>
+
+<ion-content *ngIf="loading">
+<ion-spinner  name="lines"></ion-spinner>
 </ion-content>

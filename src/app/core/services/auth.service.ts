@@ -47,8 +47,8 @@ export class AuthService {
   getUser(idClient): any {
 
     return this.http.get<any>(this.urlProf + `/GetProfil?Id_Compte=${idClient}`).pipe(
-      tap(user => {
-        localStorage.setItem('user', JSON.stringify(user));
+      tap(async user => {
+        await localStorage.setItem('user', JSON.stringify(user));
         this.currentUserSubject.next(JSON.parse(localStorage.getItem('user')));
 
       }),
@@ -71,13 +71,13 @@ export class AuthService {
   login(credentials) {
 
     return this.http.post<any>(this.url + `/api/login`, credentials).pipe(
-      map(payload => {
+      map(async payload => {
         localStorage.setItem("TOKEN_KEY", payload.access_token);
         const decoded = AuthUtils._decodeToken(payload.access_token);
-        this.getUser(decoded?.client_id)
+        await this.getUser(decoded?.client_id)
         return payload;
       }, (err) => {
-        console.log(err);
+        console.log('err');
 
       }));
   }

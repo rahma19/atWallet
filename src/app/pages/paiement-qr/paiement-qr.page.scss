@@ -1,8 +1,11 @@
 ion-content{
     --ion-background-color:#ddedfa !important;
     --ion-item-background: transparent !important;
+    div{
+        width: 100%;
+    }
 ion-button{
-    margin-left: 20%;
+    margin-left: 23%;
     &::part(native) {
         border-radius: 20px;
       }

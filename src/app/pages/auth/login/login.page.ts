@@ -24,6 +24,7 @@ export class LoginPage implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.credentials = this.fb.group({
       userName: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -48,26 +49,27 @@ export class LoginPage implements OnInit {
   }
   async login() {
 
+
     if (this.check) {
+
       this.authService.login(this.credentials.value).subscribe((res) => {
 
         setTimeout(() => {
           this.router.navigateByUrl('/tabs', { replaceUrl: true });
-        }, 500);
 
-      }), (async error => {
-        console.log("erooooooor");
+        }, 250);
+      }, async error => {
+        const alert = await this.alertController.create({
+          header: 'Nom d utilisateur ou mot de passe est incorrecte',
+          message: 'vérifier vos données',
+          buttons: ['OK'],
+        });
 
-        // const alert = await this.alertController.create({
-        //   header: 'Nom d utilisateur ou mot de passe est incorrecte',
-        //   message: 'vérifier vos données',
-        //   buttons: ['OK'],
-        // });
-
-        // alert.present();
+        alert.present();
       });
     }
     else {
+
       const alert = await this.alertController.create({
         header: 'Échec de la connexion',
         message: 'vérifier votre connexion',

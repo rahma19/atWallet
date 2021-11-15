@@ -5,10 +5,17 @@ ion-content{
     p{
         color: gray;font-size: 12px;margin-top:10%;
     }
+    ion-card:hover{
+        box-shadow: 0 8px 17px 0 rgba(36, 180, 137, 0.2), 0 6px 20px 0 rgba(44, 168, 148, 0.19);
+        transition: all .55s ease-in-out;
 
+    }
     ion-card{
         border-left: teal 5px solid;
         background-color: white;
+        box-shadow: 0 8px 17px 0 rgba(231, 231, 231, 0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        transition: all .55s ease-in-out;
+    
         ion-card-title{
             display: flex;
         }
@@ -28,6 +35,6 @@ ion-content{
     float: left;width: 30%;font-size: 12px;
 }
 
-dv{
+.dv{
     margin-bottom: 5%;
 }
