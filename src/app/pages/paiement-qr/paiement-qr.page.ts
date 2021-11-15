@@ -30,36 +30,25 @@ export class PaiementQrPage implements OnInit {
 
   decoderQR() {
     this.transactionService.achat = this.data; //qrcode;
-    this.router.navigate(['/achat']);
+    //this.router.navigate(['/achat']);
 
-    // while (this.id != '63') {
+    //s  while (this.id != '63') {
     if (this.id != '62' && this.id != '26') {
       this.j += 2;
       this.l = Number(this.qr.substr(this.j, 2));
-
       let val = this.qr.substr(this.j + 2, this.l);
       let x = this.id;
       this.data.push({ id: x, val });
-
       this.j += this.l;
       this.j += 2;
-      console.log(this.l);
-
       this.id = this.qr.substr(this.j, 2);
-
-      //this.id = id;
     }
     else {
       let l = Number(this.qr.substr(this.j + 2, 2));
-
       this.j = this.j + 2;
       this.i = 0;
       let res = this.qr.substr(this.j + 2, l);
-      console.log(res);
-      console.log(this.j, this.id, this.i);
-
-      this.id = res.substr(this.i, 2); //this.id +
-      console.log(this.id);
+      this.id = res.substr(this.i, 2);
 
       let ln = 0;
       let valres;
@@ -67,36 +56,25 @@ export class PaiementQrPage implements OnInit {
         this.i = this.i + 2;
         ln = Number(res.substr(this.i, 2));
         valres = res.substr(this.i + 2, ln);
-        console.log(valres);
-        console.log(ln);
         if (this.id != '')
           this.data.push({ id: this.id, val: valres });
-
         this.i += ln;
-        console.log(this.id);
+        console.log(this.i, l);
 
         this.id = res.substr(this.i + 2, 2);
         console.log(this.id);
 
         this.i = this.i + 2;
-        console.log(this.i);
 
       }
-      console.log(this.id);
       this.j += this.i;
-      console.log(this.j);
-
-      //this.id = this.qr.substr(this.j + 2, 2)
+      //}
+      this.j = this.j + 2;
+      this.id = this.qr.substr(this.j, 2)
+      console.log(this.data);
       console.log(this.id);
-
     }
-    //this.j += this.i;
-    // let ln = Number(qr.substr(this.j + 4, 2));
-    // let valres = qr.substr(this.j + 2, ln);
-    // this.data.push({ id: this.id, val: valres });
-    console.log(this.data);
 
-    // }
   }
 
   scanBarcode() {
