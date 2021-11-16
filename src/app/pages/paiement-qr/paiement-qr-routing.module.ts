@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '',
     component: PaiementQrPage
   }, {
-    path: '/achat',
+    path: '/detail-achat',
     loadChildren: () => import('../detail-achat/detail-achat.module').then(m => m.DetailAchatPageModule)
   }
 ];

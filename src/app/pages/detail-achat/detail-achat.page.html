@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" (click)="return()">
       <ion-icon name="arrow-back"></ion-icon>
     </ion-buttons>
     <!-- <ion-title>Detail Achat</ion-title> -->
@@ -14,7 +14,7 @@
     </ion-card-title>
     <ion-card-content>
       <h2>Detail commerçant</h2>
-      <!-- <ion-item>
+      <ion-item>
         <div>
           <b>Nom</b> {{nom}}<br>
           <b>Ville</b> {{ville}}<br>
@@ -26,9 +26,9 @@
         <div> <b>Montant</b> {{montant }} Dt <br>
           | customCurrencyFormat
         </div>
-      </ion-item> -->
+      </ion-item>
 
-      <form [formGroup]="credentials">
+      <form [formGroup]="credentials" (ngSubmit)="onSubmit()">
         <ion-item style="padding: 0;">
           <ion-label position="floating">Telephone</ion-label>
           <ion-input type="text" placeholder="numTel" formControlName="numtel">
@@ -36,6 +36,12 @@
           </ion-input>
           <div *ngIf="(numtel.dirty || numtel.touched) && numtel.errors" class="errors">
             <span *ngIf="numtel.errors?.required">num Tel est obligatoire</span>
+            <div *ngIf="numtel.errors?.pattern ">
+              le telephone doit contenir que des chiffres.
+            </div>
+            <div *ngIf=" numtel.errors?.minlength ">
+              le telephone etre de 8 characteres.
+            </div>
           </div>
         </ion-item>
 

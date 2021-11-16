@@ -72,8 +72,10 @@ export class TransactionService {
     });
   }
   async paymentQr(form) {
-    return this.http.get<any>(this.urlPay + '/api/Paiement/EPaiement', form).pipe(take(1)).subscribe(async (res) => {
-      await this.getSolde(form.id_Compte);
+    console.log(form);
+
+    return this.http.post<any>('http://10.12.113.152:15272/api/Paiement/EPaiement', form).pipe(take(1)).subscribe(async (res) => {
+      await this.getSolde(form.idCompte);
       // this.updateStorage(res);
       let us = JSON.parse(localStorage.getItem('user'));
       us.solde = this.soldeSubject.value;

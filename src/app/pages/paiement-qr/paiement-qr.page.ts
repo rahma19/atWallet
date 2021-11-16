@@ -17,7 +17,6 @@ export class PaiementQrPage implements OnInit {
 
   data: any[] = [];
   j: number = 0;
-  // qr = "00020101021252043005530378854042.455802TN5915MAGASIN MANAR I6007MANAR I6104209226430015tn.atw.atwallet01201011210740000157882162590203***0305AZIZA052021ATWLT100101000000107086410010111034006304D082";
   id: any;
   l = 0;
   i: number;
@@ -77,12 +76,16 @@ export class PaiementQrPage implements OnInit {
   }
 
   async scanBarcode() {
-    const qrcode = "00020101021252043005530378854042.455802TN5915MAGASIN MANAR I6007MANAR I6104209226430015tn.atw.atwallet01201011210740000157882162590203***0305AZIZA052021ATWLT100101000000107086410010111034006304D082";
-    this.decoderQR(qrcode);
+    let qrcode = "00020101021252043005530378854042.455802TN5915MAGASIN MANAR I6007MANAR I6104209226430015tn.atw.atwallet012010112107400001578821\n62590203***0305AZIZA052021ATWLT100101000000107086410010111034006304D082";
+    let tab = qrcode.split(/(\n)/);
+    qrcode = tab[0] + tab[2];
+    console.log(tab, qrcode);
+
+    // this.decoderQR(qrcode);
     console.log(this.data);
 
     this.transactionService.achat = this.data;
-    await this.router.navigateByUrl('/achat');
+    //await this.router.navigateByUrl('/detail-achat');
     // const options: BarcodeScannerOptions = {
     //   preferFrontCamera: false,
     //   showFlipCameraButton: true,
@@ -96,12 +99,15 @@ export class PaiementQrPage implements OnInit {
 
     // this.barcodeScanner
     //   .scan(options)
-    //   .then((barcodeData) => {
+    //   .then(async (barcodeData) => {
     //     console.log('Barcode data', barcodeData);
-    //     const qrcode = JSON.stringify(barcodeData.text);
+    //     let qrcode = JSON.stringify(barcodeData.text);
+    //     let tab = qrcode.split(/(\n)/);
+    //     qrcode = tab[0]+tab[1];
+    //     alert(qrcode);
     //     this.decoderQR(qrcode);
     //     this.transactionService.achat = this.data;
-    //     this.router.navigate(['/achat']);
+    //     await this.router.navigateByUrl('/detail-achat');
     //   })
     //   .catch((err) => {
     //     console.log('Error', err);
