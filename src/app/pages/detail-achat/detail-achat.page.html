@@ -1,53 +1,50 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-buttons (click)="return()" slot="start">
+    <ion-buttons slot="start">
       <ion-icon name="arrow-back"></ion-icon>
-     </ion-buttons>
+    </ion-buttons>
     <!-- <ion-title>Detail Achat</ion-title> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<ion-card>
-  <ion-card-title>
-    <b>Detail du Paiement</b>
-  </ion-card-title>
-  <ion-card-content>
-    <h2>Detail commerçant</h2>
-    <ion-item>
-      <div>
-        <b>Nom</b>   MAGASIN MANAR I<br>
-          <b>Ville</b>   MANAR I<br>
-            <b>Nom de l'enseigne</b>   AZIZA<br>
-      </div>
-    </ion-item>
-    <h2>Detail Achat</h2>
-    <ion-item>
-      <div>      <b>Montant</b>   {{montant }} Dt <br> <!--| customCurrencyFormat-->
-      </div>
-    </ion-item>
+  <ion-card>
+    <ion-card-title>
+      <b>Detail du Paiement</b>
+    </ion-card-title>
+    <ion-card-content>
+      <h2>Detail commerçant</h2>
+      <!-- <ion-item>
+        <div>
+          <b>Nom</b> {{nom}}<br>
+          <b>Ville</b> {{ville}}<br>
+          <b>Nom de l'enseigne</b> {{nomMag}}<br>
+        </div>
+      </ion-item>
+      <h2>Detail Achat</h2>
+      <ion-item>
+        <div> <b>Montant</b> {{montant }} Dt <br>
+          | customCurrencyFormat
+        </div>
+      </ion-item> -->
 
-    <!-- <form #f="ngForm"> -->
-      <ion-item style="padding: 0;"> 
-    <ion-label position="floating">Telephone</ion-label>
-    <ion-input type="text" name="numtel" placeholder="numtel"  [(ngModel)]="achat" pattern="^[0-9]*$" maxlength="8" minlength="8" required>
-      <ion-icon name="cash-outline"></ion-icon>
-    </ion-input> 
-    </ion-item>
-     <!-- <div *ngIf="(numTel.dirty || numTel.touched) && numTel.errors" class="errors">
-      <span *ngIf="numTel.errors?.required">numTel est obligatoire</span>
-      <div *ngIf="numTel.errors?.pattern ">
-        le telephone doit contenir que des chiffres.
-      </div>
-      <div *ngIf=" numTel.errors?.minlength ">
-        le telephone etre de 8 characteres.
-      </div>
-    </div> -->
-      <!-- </form> -->
-    <div class="dv">
-      <ion-button>Annuler</ion-button>
-      <ion-button type="submit">Confirmer</ion-button>  
-    </div>
-  </ion-card-content>
-</ion-card>
+      <form [formGroup]="credentials">
+        <ion-item style="padding: 0;">
+          <ion-label position="floating">Telephone</ion-label>
+          <ion-input type="text" placeholder="numTel" formControlName="numtel">
+            <ion-icon name="cash-outline"></ion-icon>
+          </ion-input>
+          <div *ngIf="(numtel.dirty || numtel.touched) && numtel.errors" class="errors">
+            <span *ngIf="numtel.errors?.required">num Tel est obligatoire</span>
+          </div>
+        </ion-item>
+
+        <div class="dv">
+          <ion-button>Annuler</ion-button>
+          <ion-button type="submit">Confirmer</ion-button>
+        </div>
+      </form>
+
+    </ion-card-content>
+  </ion-card>
 </ion-content>

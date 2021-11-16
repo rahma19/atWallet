@@ -71,4 +71,14 @@ export class TransactionService {
 
     });
   }
+  async paymentQr(form) {
+    return this.http.get<any>(this.urlPay + '/api/Paiement/EPaiement', form).pipe(take(1)).subscribe(async (res) => {
+      await this.getSolde(form.id_Compte);
+      // this.updateStorage(res);
+      let us = JSON.parse(localStorage.getItem('user'));
+      us.solde = this.soldeSubject.value;
+      localStorage.setItem("user", JSON.stringify(us));
+
+    });
+  }
 }

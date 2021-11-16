@@ -37,7 +37,7 @@ export class RechargeTelPage implements OnInit {
     });
     console.log(this.user, this.solde);
 
-    this.tel = '57383327' //this.user.telephone1;
+    this.tel = this.user.telephone1;
     this.check();
   }
 
