@@ -23,8 +23,8 @@
       </ion-item>
       <h2>Detail Achat</h2>
       <ion-item>
-        <div> <b>Montant</b> {{montant }} Dt <br>
-          | customCurrencyFormat
+        <div> <b>Montant</b> {{montant | customCurrencyFormat }} Dt <br>
+          
         </div>
       </ion-item>
 
@@ -40,14 +40,17 @@
               le telephone doit contenir que des chiffres.
             </div>
             <div *ngIf=" numtel.errors?.minlength ">
-              le telephone etre de 8 characteres.
+              le telephone doit etre de 8 characteres.
+            </div>
+            <div *ngIf=" numtel.errors?.maxlength ">
+              le telephone doit etre de 8 characteres.
             </div>
           </div>
         </ion-item>
 
         <div class="dv">
           <ion-button>Annuler</ion-button>
-          <ion-button type="submit">Confirmer</ion-button>
+          <ion-button type="submit" [disabled]="!credentials.valid">Confirmer</ion-button>
         </div>
       </form>
 

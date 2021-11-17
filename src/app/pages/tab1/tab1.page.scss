@@ -78,11 +78,11 @@ ion-content{
   }
 
   .lbl{
-    float: left;width: 30%;font-size: 12px;color: gray;
+    float: left;width: 30%;font-size: 11px;color: gray;
   }
 
   .dte{
-    float: right;margin-left:40%;font-size: 12px;color: gray;
+    float: right;margin-left:40%;font-size: 11px;color: gray;
   }
 
   .mont{
@@ -91,4 +91,8 @@ ion-content{
 
   .dv{
     display: flex;color: black;
+  }
+
+  .divItem{
+    height: auto;
   }

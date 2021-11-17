@@ -1,8 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { NavController, PopoverController } from '@ionic/angular';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { TransactionService } from 'src/app/core/services/transaction.service';
+import { AfficheTransactionComponent } from '../affiche-transaction/affiche-transaction.component';
 
 @Component({
   selector: 'app-detail-achat',
@@ -16,57 +19,78 @@ export class DetailAchatPage implements OnInit {
   nom: any;
   ville: any;
   credentials: FormGroup;
+  user: any;
+  data: any;
 
-  constructor(private transactionService: TransactionService, private location: Location, private fbdr: FormBuilder, private navCtrl: NavController) { }
+  constructor(private authService: AuthService,
+    private transactionService: TransactionService,
+    private location: Location,
+    private fbdr: FormBuilder,
+    private router: Router,
+    public popoverController: PopoverController) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+
     this.credentials = this.fbdr.group({
       numtel: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern('^[0-9]*$')]],
-
     });
-    this.achat = this.transactionService.achat;
 
-
+    this.achat = await this.transactionService.achat;
+    this.user = this.authService.payload;
     this.montant = this.achat[4].val;
     this.nomMag = this.achat[12].val;
     this.nom = this.achat[6].val;
     this.ville = this.achat[7].val;
   }
-  return() {
-    this.location.back();
-  }
 
+  return() {
+    this.router.navigate(['/tabs']);
+  }
 
   get numtel() {
     return this.credentials.get('numtel');
   }
 
-  onSubmit() {
-    console.log(this.credentials.value);
+  async presentPopover() {
+    const popover = await this.popoverController.create({
+      component: AfficheTransactionComponent,
+      cssClass: 'my-custom-class',
+      // event: ev,
+      componentProps: this.data,
+      translucent: true
+    });
+    await popover.present();
+    const { role } = await popover.onDidDismiss();
+  }
+
+  async onSubmit() {
     let obj = {
-      "idCompte": 5,
+      "idCompte": this.user.idCompte,
       "idCanalPaiement": 1,
-      "idWallet": 1,
+      "idWallet": this.user.idWallet,
       "qr_code_model": {
-        "id_00": "01",
-        "id_01": "12",
-        "id_52": "3005",
-        "id_53": "788",
-        "id_54": 4.45,
-        "id_58": "TN",
-        "id_59": "MAGASIN MANAR I",
-        "id_60": "MANAR I",
-        "id_61": "2092",
-        "id_2600": "tn.atw.atwallet",
+        "id_00": this.achat[0].val,
+        "id_01": this.achat[1].val,
+        "id_52": this.achat[2].val,
+        "id_53": this.achat[3].val,
+        "id_54": this.achat[4].val,
+        "id_58": this.achat[5].val,
+        "id_59": this.achat[6].val,
+        "id_60": this.achat[7].val,
+        "id_61": this.achat[8].val,
+        "id_2600": this.achat[9].val,
         "id_2601": "10112107400001578821",
-        "id_2602": "***",
-        "id_2603": "AZIZA",
-        "id_2605": "21ATWLT1001010000001",
-        "id_2607": "64100101",
-        "id_2611": "400",
-        "id_63": "D082"
+        "id_2602": this.credentials.value.numtel,
+        "id_2603": this.achat[12].val,
+        "id_2605": this.achat[13].val,
+        "id_2607": this.achat[14].val,
+        "id_2611": this.achat[15].val,
+        "id_63": this.achat[16].val
       }
     }
-    this.transactionService.paymentQr(obj);
+    await this.transactionService.paymentQr(obj);
+    this.data = await this.transactionService.trans;
+    console.log(this.data);
+    this.presentPopover();
   }
 }

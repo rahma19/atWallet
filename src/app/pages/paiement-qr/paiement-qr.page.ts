@@ -66,26 +66,25 @@ export class PaiementQrPage implements OnInit {
         this.j += this.i;
         this.j = this.j + 2;
         this.id = qrcode.substr(this.j, 2);
-        console.log(this.id);
-        console.log(this.data);
 
       }
-      console.log(this.data);
-
     }
+    let ln = Number(qrcode.substr(this.j + 2, 2));
+    let valres = qrcode.substr(this.j + 4, ln);
+    this.data.push({ id: this.id, val: valres });
+    console.log(this.data);
+
   }
 
   async scanBarcode() {
-    let qrcode = "00020101021252043005530378854042.455802TN5915MAGASIN MANAR I6007MANAR I6104209226430015tn.atw.atwallet012010112107400001578821\n62590203***0305AZIZA052021ATWLT100101000000107086410010111034006304D082";
-    let tab = qrcode.split(/(\n)/);
-    qrcode = tab[0] + tab[2];
-    console.log(tab, qrcode);
-
-    // this.decoderQR(qrcode);
+    let qr = "00020101021252043005530378854042.455802TN5917MAGASIN EZZOUHOUR6009EZZOUHOUR6104999926440016tn.stb.digicarte01201011210740000287881562590203***0305AZIZA052021DCSTB1002010000001070864100201110340063045660";
+    // let tab = qrcode.split(/(\n)/);
+    // qrcode = tab[0] + tab[2];
+    this.decoderQR(qr);
     console.log(this.data);
 
     this.transactionService.achat = this.data;
-    //await this.router.navigateByUrl('/detail-achat');
+    await this.router.navigateByUrl('/detail-achat');
     // const options: BarcodeScannerOptions = {
     //   preferFrontCamera: false,
     //   showFlipCameraButton: true,
@@ -102,12 +101,11 @@ export class PaiementQrPage implements OnInit {
     //   .then(async (barcodeData) => {
     //     console.log('Barcode data', barcodeData);
     //     let qrcode = JSON.stringify(barcodeData.text);
-    //     let tab = qrcode.split(/(\n)/);
-    //     qrcode = tab[0]+tab[1];
-    //     alert(qrcode);
-    //     this.decoderQR(qrcode);
-    //     this.transactionService.achat = this.data;
-    //     await this.router.navigateByUrl('/detail-achat');
+    //     // alert(qrcode);
+    //     // alert(JSON.stringify(qr));
+    //     this.decoderQR(qr);
+    //     this.transactionService.achat = await this.data;
+    //     this.router.navigateByUrl('/detail-achat');
     //   })
     //   .catch((err) => {
     //     console.log('Error', err);

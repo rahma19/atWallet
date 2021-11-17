@@ -65,10 +65,10 @@ export class Tab1Page implements OnInit {
   }
 
   getAllTransactions() {
-    var d = new Date();
-    this.datefin = moment(d).format("YYYY-MM-DD");
-    this.datedeb = '2021-10-25';
-    this.transService.getAllTransaction(this.datedeb, this.datefin, this.user.idCompte);
+    // var d = new Date();
+    // this.datefin = moment(d).format("YYYY-MM-DD");
+    // this.datedeb = '2021-10-25';
+    this.transService.getAllTransaction(this.user.idCompte);//this.datedeb, this.datefin,
     this.transService.allTransactions$.subscribe(res => {
       this.transaction = res;
       console.log(this.transaction);

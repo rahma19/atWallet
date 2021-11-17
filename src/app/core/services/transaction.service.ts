@@ -14,6 +14,7 @@ export class TransactionService {
   transactionSubject: BehaviorSubject<any[]>;
   soldeSubject: BehaviorSubject<any[]>;
   achat: any;
+  trans: any = null;
 
   constructor(private http: HttpClient) {
     this.transactionSubject = new BehaviorSubject<any[]>(JSON.parse(localStorage.getItem('transactions')));
@@ -28,9 +29,9 @@ export class TransactionService {
     return this.soldeSubject.asObservable();
   }
 
-  getAllTransaction(datedeb, datefin, idCompte): Promise<any> {
+  getAllTransaction(idCompte): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.get<any>(`${this.url}/GetTransactionByCompte?id_Compte=${idCompte}&date_debut=${datedeb}&date_fin=${datefin}`)
+      this.http.get<any>(`${this.url}/GetTransactionByCompte?id_Compte=${idCompte}`)//&date_debut=${datedeb}&date_fin=${datefin}
         .pipe(take(1))
         .subscribe(res => {
           this.updateStorage(res)
@@ -72,15 +73,13 @@ export class TransactionService {
     });
   }
   async paymentQr(form) {
-    console.log(form);
-
-    return this.http.post<any>('http://10.12.113.152:15272/api/Paiement/EPaiement', form).pipe(take(1)).subscribe(async (res) => {
+    return this.http.post<any>('http://10.12.113.152:15272/api/Paiement/PaiementQRCode', form).pipe(take(1)).subscribe(async (res) => {
+      this.trans = res;
       await this.getSolde(form.idCompte);
-      // this.updateStorage(res);
+      this.getAllTransaction(form.idCompte);
       let us = JSON.parse(localStorage.getItem('user'));
       us.solde = this.soldeSubject.value;
       localStorage.setItem("user", JSON.stringify(us));
-
     });
   }
 }
