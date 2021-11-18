@@ -3,10 +3,15 @@
   <ion-buttons  (click)="close()">
     <ion-icon name="close"></ion-icon>
     </ion-buttons>
+    <h3 class="hclass">{{motif_return}} De<br> Transactions!</h3>
+
 </ion-card-title>
   <img src="../../../assets/img/wallet.png" class="card-img"/>
 <ion-card-content >
-  <h3 class="txt">Transactions Succees!</h3>
-
+  <div><!-- *ngIf="motif_return=='succes'"-->
+    <h3 class="txt">Un montant de {{montantTransaction}} a été retiré de votre solde. </h3>
+  <span>votre bonheur est notre plaisir</span>
+  </div>
+  <!-- <div *ngIf="motif_return=='echec'">Votre transaction n'etait pas effectué</div> -->
 </ion-card-content>
 </ion-card>

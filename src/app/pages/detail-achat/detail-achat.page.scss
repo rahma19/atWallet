@@ -3,9 +3,10 @@ ion-content{
     --ion-item-background: transparent !important;
     ion-card{
         background-color: white;
-        box-shadow: 0 8px 17px 0 rgba(231, 231, 231, 0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-        transition: all .55s ease-in-out;
-        padding: 4%;
+        box-shadow: 0 8px 17px 0 rgb(231 231 231 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+        transition: all 0.55s ease-in-out;
+        border-radius: 8px;
+                padding: 4%;
         b{
             color: teal;
         }
@@ -25,6 +26,12 @@ ion-content{
     font-size: 12px;
     color: red;
   }
+  .popover-content {
+    background: #222;
+  }
   .my-custom-class {
-    --background: #222;
+    top: 210.976px;
+    --width: 90%;
+        left: 15px ;
+        transform-origin: left top
   }

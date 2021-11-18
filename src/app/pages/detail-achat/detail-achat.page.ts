@@ -56,8 +56,13 @@ export class DetailAchatPage implements OnInit {
       component: AfficheTransactionComponent,
       cssClass: 'my-custom-class',
       // event: ev,
-      componentProps: this.data,
-      translucent: true
+      componentProps: {
+        'motif_return': this.data.motif_return,
+        'montantTransaction': this.data.montantTransaction,
+
+      },
+      animated: true
+      // translucent: true
     });
     await popover.present();
     const { role } = await popover.onDidDismiss();
@@ -91,6 +96,7 @@ export class DetailAchatPage implements OnInit {
     await this.transactionService.paymentQr(obj);
     this.data = await this.transactionService.trans;
     console.log(this.data);
+
     this.presentPopover();
   }
 }

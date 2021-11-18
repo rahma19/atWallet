@@ -8,12 +8,12 @@ import { PopoverController } from '@ionic/angular';
   styleUrls: ['./affiche-transaction.component.scss'],
 })
 export class AfficheTransactionComponent implements OnInit {
-  @Input() data: any;
+  @Input() motif_return: any;
+  @Input() montantTransaction: any;
 
   constructor(private router: Router, private pop: PopoverController) { }
 
   ngOnInit() {
-    console.log(this.data);
 
   }
 
