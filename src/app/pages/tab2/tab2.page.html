@@ -18,8 +18,8 @@
     <ion-card>
       <ion-card-content>
         <div style="display: flex;">
-          <div *ngIf="t.idTypeTransaction=='1'" style="font-size: 15px;width: 70%;">Recharge tel</div><br />
-          <div *ngIf="t.idTypeTransaction=='2'" style="font-size: 15px;width: 70%;">Paiement</div><br />
+          <div *ngIf="t.idCanalPaiement=='2'" style="font-size: 15px;width: 70%;">Recharge tel</div><br />
+          <div *ngIf="t.idCanalPaiement=='1'" style="font-size: 15px;width: 70%;">Paiement QR</div><br />
           <b style="color: rgb(219, 22, 22);width: 30%;" class="txt">- {{t.montantTransaction}} TND</b>
         </div>
         <div style="display: flex;">

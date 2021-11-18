@@ -18,6 +18,7 @@ export class RechargeTelPage implements OnInit {
   path: any;
   mtant: any;
   solde: any;
+  verifNum: boolean = true;
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
@@ -62,14 +63,19 @@ export class RechargeTelPage implements OnInit {
 
   submit(form) {
     if (this.solde > form.value.montant) {
-      form.value.id_Compte = this.user.idCompte;
-      form.value.id_prestataire = '1';
-      form.value.id_canal_paiement = '1';
+      form.value.idCompte = this.user.idCompte;
+      form.value.idWallet = this.user.idWallet;
+      form.value.id_prestataire = 1;
+      form.value.id_canal_paiement = 2;
       console.log(form.value);
       this.transaService.payment(form.value);
-      this.presentToast('transaction validé.', 'primary');
+      this.presentToast('Transaction validée.', 'primary');
     } else {
-      this.presentToast('verifier le montant saisie.', 'danger');
+      this.presentToast('Votre solde est insuffisant.', 'danger');
+    }
+    if (this.verifNum == false) {
+      this.presentToast('Veillez saisir un numero valide.', 'danger');
+
     }
   }
 
@@ -78,18 +84,20 @@ export class RechargeTelPage implements OnInit {
     if (this.tel != '') {
       if (this.tel[0] == 2) {
         this.path = "../../../assets/img/ooredoo.jpg";
+        this.verifNum = true;
       } else
         if (this.tel[0] == 9) {
           this.path = "../../../assets/img/telecom.jfif";
+          this.verifNum = true;
         }
         else
           if (this.tel[0] == 5) {
             this.path = "../../../assets/img/orange.png";
-
+            this.verifNum = true;
           }
           else {
             this.presentToast('numero non valide.', 'danger');
-
+            this.verifNum = false;
           }
     }
 

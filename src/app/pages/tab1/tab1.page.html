@@ -66,8 +66,8 @@
       <div class="divItem" *ngFor="let t of transaction ;let i = index">
         <div  *ngIf="i<3">
         <div class="dv">
-          <div *ngIf="t.idCanalPaiement=='1'" class="trans">Recharge tel</div><br />
-          <div *ngIf="t.idCanalPaiement=='2'" class="trans">Paiement</div><br />
+          <div *ngIf="t.idCanalPaiement=='2'" class="trans">Recharge tel</div><br />
+          <div *ngIf="t.idCanalPaiement=='1'" class="trans">Paiement QR</div><br />
           <div class="mont"> {{t.montantTransaction | customCurrencyFormat}} TND </div>
         </div>
         <div class="dv">
