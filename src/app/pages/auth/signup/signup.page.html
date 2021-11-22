@@ -13,7 +13,7 @@
 
     <ion-card class="ion-no-margin">
 
-        <ion-card-header color="secondary" >
+        <ion-card-header color="primary" >
             <ion-card-title >
               S'inscrire
             </ion-card-title>
@@ -26,16 +26,25 @@ le formulaire
              <form [formGroup]="credentials">
        <ion-card-content>
            <ion-item>
-               <ion-input name="name" type="text" placeholder="Nom" formControlName="name">
+               <ion-input name="nom" type="text" placeholder="Nom" formControlName="nom">
                  <ion-icon name="person-outline"  ></ion-icon>
                </ion-input>
            </ion-item>
               <div>
-                <div *ngIf="(name.dirty || name.touched) && name.errors" class="errors">
-                  <span *ngIf="name.errors?.required">nom est obligatoire</span>
+                <div *ngIf="(nom.dirty || nom.touched) && nom.errors" class="errors">
+                  <span *ngIf="nom.errors?.required">nom est obligatoire</span>
                 </div>
-
               </div>
+              <ion-item>
+                <ion-input name="prenom" type="text" placeholder="Prenom" formControlName="prenom">
+                  <ion-icon name="person-outline"  ></ion-icon>
+                </ion-input>
+            </ion-item>
+               <div>
+                 <div *ngIf="(prenom.dirty || prenom.touched) && prenom.errors" class="errors">
+                   <span *ngIf="prenom.errors?.required">prenom est obligatoire</span>
+                 </div>
+               </div>
            <ion-item>
                <ion-input name="phone" type="text" placeholder="Num tel" formControlName="phone">
                  <ion-icon name="call-outline" ></ion-icon>
@@ -66,12 +75,16 @@ le formulaire
             <span *ngIf="password.errors?.required">mot de passe est obligatoire</span>
             <span *ngIf="password.errors?.minlength">mot de passe doit etre de 6 characteres</span>
           </div>
-
+          <ion-item>
+            <ion-input  type="password" placeholder="Confirmer mot de passe" >
+              <ion-icon name="lock-closed" ></ion-icon>
+            </ion-input>
+        </ion-item>
            <div class="sign-btn-wrap">
               <ion-button  shape="round" type="submit"  fill="solid" class="sign-btn" color="secondary" [disabled]="!credentials.valid">S'inscrire</ion-button>
              </div>
 
-             <div class="text-tag">
+             <!-- <div class="text-tag">
              <span>Ou s'inscrire via :</span>
              </div>
 
@@ -86,7 +99,7 @@ le formulaire
                <ion-img src="assets/img/apple.png"></ion-img>
                  </ion-button>
 
-               </div>
+               </div> -->
 
        </ion-card-content>
         </form>

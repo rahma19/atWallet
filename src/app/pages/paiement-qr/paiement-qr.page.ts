@@ -77,7 +77,7 @@ export class PaiementQrPage implements OnInit {
   }
 
   async scanBarcode() {
-    let qr = "00020101021252043005530378854042.455802TN5917MAGASIN EZZOUHOUR6009EZZOUHOUR6104999926440016tn.stb.digicarte01201011210740000287881562590203***0305AZIZA052021DCSTB1002010000001070864100201110340063045660";
+    let qr = "000201010212520430055303788540552.455802TN5917MAGASIN EZZOUHOUR6009EZZOUHOUR6104999926440016tn.stb.digicarte01201011210740000287881562590203***0305AZIZA052021DCSTB1002010000001070864100201110340063045660";
     this.decoderQR(qr);
     this.transactionService.achat = this.data;
     await this.router.navigateByUrl('/detail-achat');
@@ -95,6 +95,7 @@ export class PaiementQrPage implements OnInit {
     // this.barcodeScanner
     //   .scan(options)
     //   .then(async (barcodeData) => {
+    //     console.log('Barcode data', barcodeData.text);
     //     let qrcode = barcodeData.text;
     //     this.decoderQR(qrcode);
     //     this.transactionService.achat = await this.data;

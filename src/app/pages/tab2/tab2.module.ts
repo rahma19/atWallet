@@ -6,14 +6,18 @@ import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
+import { Currency } from 'src/shared/currency.pipe';
+import { PipesModule } from 'src/shared/pipes.module';
+import { CurrencyP } from 'src/shared/currencyP.pipe';
 
 @NgModule({
   imports: [
     IonicModule,
     CommonModule,
-    FormsModule,
+    FormsModule, PipesModule,
     Tab2PageRoutingModule
   ],
-  declarations: [Tab2Page]
+  declarations: [Tab2Page],
+  providers: [Currency, CurrencyP]
 })
 export class Tab2PageModule { }

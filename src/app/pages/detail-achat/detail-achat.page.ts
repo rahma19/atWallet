@@ -41,6 +41,7 @@ export class DetailAchatPage implements OnInit {
     this.achat = await this.transactionService.achat;
     this.user = this.authService.payload;
     this.montant = this.achat[4].val;
+
     this.nomMag = this.achat[12].val;
     this.nom = this.achat[6].val;
     this.ville = this.achat[7].val;

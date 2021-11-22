@@ -45,7 +45,7 @@
 
           <ion-item>
             <ion-label position="floating">Montant</ion-label>
-            <ion-input type="text" name="montant" [(ngModel)]="mtant" placeholder="Montant" #montant="ngModel"  pattern="^[0-9]*$" required>
+            <ion-input type="text" name="montant" [(ngModel)]="mtant" placeholder="Montant" #montant="ngModel" minlength="4" step="500" pattern="\d+" required>
               <ion-icon name="cash-outline"></ion-icon>
             </ion-input>
           </ion-item>
@@ -54,6 +54,9 @@
             <span *ngIf="montant.errors?.required">montant est obligatoire</span>
             <div *ngIf="montant.errors?.pattern ">
               le montant doit contenir que des chiffres.
+            </div>
+            <div *ngIf=" montant.errors?.minlength">
+              le montant doit etre au moin 1000 millime.
             </div>
           </div>
 

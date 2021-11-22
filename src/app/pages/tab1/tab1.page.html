@@ -68,7 +68,8 @@
         <div class="dv">
           <div *ngIf="t.idCanalPaiement=='2'" class="trans">Recharge tel</div><br />
           <div *ngIf="t.idCanalPaiement=='1'" class="trans">Paiement QR</div><br />
-          <div class="mont"> {{t.montantTransaction | customCurrencyFormat}} TND </div>
+          <div *ngIf="t.idCanalPaiement=='2'"  class="mont"> {{t.montantTransaction | customCurrencyFormat}} TND </div>
+          <div *ngIf="t.idCanalPaiement=='1'"  class="mont"> {{t.montantTransaction | numberCurrencyFormat}} TND </div>
         </div>
         <div class="dv">
           <ion-label class="lbl">Du : {{t.designation_pretataire}} </ion-label><br />

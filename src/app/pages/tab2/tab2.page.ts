@@ -21,12 +21,12 @@ export class Tab2Page implements OnInit {
   ngOnInit(): void {
     // var d = new Date();
     // this.datedeb = moment(d).format("YYYY-MM-DD");
-    this.datedeb = '2021-10-25';
-    let datefin = '2021-10-28';
+    // this.datedeb = '2021-10-25';
+    // let datefin = '2021-10-28';
     this.user = this.authService.payload;
     this.transService.allTransactions$.subscribe(res => {
       this.transaction = res;
-      this.derniereTransa = res[res.length - 1].dateTransaction;
+      this.derniereTransa = res[0].dateTransaction;
     });
   }
 

@@ -16,7 +16,8 @@ export class SignupPage implements OnInit {
 
   ngOnInit() {
     this.credentials = this.fb.group({
-      name: ['', [Validators.required]],
+      nom: ['', [Validators.required]],
+      prenom: ['', [Validators.required]],
       phone: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -30,8 +31,12 @@ export class SignupPage implements OnInit {
     return this.credentials.get('password');
   }
 
-  get name() {
-    return this.credentials.get('name');
+  get nom() {
+    return this.credentials.get('nom');
+  }
+
+  get prenom() {
+    return this.credentials.get('prenom');
   }
 
   get phone() {

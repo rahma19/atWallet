@@ -9,6 +9,8 @@ import { DetailAchatPageRoutingModule } from './detail-achat-routing.module';
 import { DetailAchatPage } from './detail-achat.page';
 import { Currency } from 'src/shared/currency.pipe';
 import { PipesModule } from 'src/shared/pipes.module';
+import { AfficheTransactionComponent } from '../affiche-transaction/affiche-transaction.component';
+import { CurrencyP } from 'src/shared/currencyP.pipe';
 
 @NgModule({
   imports: [
@@ -18,7 +20,7 @@ import { PipesModule } from 'src/shared/pipes.module';
     IonicModule, PipesModule,
     DetailAchatPageRoutingModule
   ],
-  declarations: [DetailAchatPage],
-  providers: [Currency]
+  declarations: [DetailAchatPage, AfficheTransactionComponent],
+  providers: [Currency, CurrencyP]
 })
 export class DetailAchatPageModule { }

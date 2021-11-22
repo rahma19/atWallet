@@ -9,6 +9,7 @@ import { RechargeTelPage } from '../recharge-tel/recharge-tel.page';
 import { PaiementQrPage } from '../paiement-qr/paiement-qr.page';
 import { Currency } from 'src/shared/currency.pipe';
 import { PipesModule } from 'src/shared/pipes.module';
+import { CurrencyP } from 'src/shared/currencyP.pipe';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { PipesModule } from 'src/shared/pipes.module';
     Tab1PageRoutingModule
   ],
   declarations: [Tab1Page, RechargeTelPage, PaiementQrPage],
-  providers: [Currency]
+  providers: [Currency, CurrencyP]
 })
 export class Tab1PageModule { }

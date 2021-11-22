@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ToastController } from '@ionic/angular';
+import { PopoverController, ToastController } from '@ionic/angular';
 import { take } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { TransactionService } from 'src/app/core/services/transaction.service';
+import { AfficheTransactionComponent } from '../affiche-transaction/affiche-transaction.component';
 
 @Component({
   selector: 'app-recharge-tel',
@@ -19,8 +20,10 @@ export class RechargeTelPage implements OnInit {
   mtant: any;
   solde: any;
   verifNum: boolean = true;
+  data: any;
 
   constructor(private fb: FormBuilder,
+    private popoverController: PopoverController,
     private authService: AuthService,
     private transaService: TransactionService,
     public toastController: ToastController
@@ -50,6 +53,21 @@ export class RechargeTelPage implements OnInit {
   get montant() {
     return this.cred.get('montant').value;
   }
+  async presentPopover() {
+    const popover = await this.popoverController.create({
+      component: AfficheTransactionComponent,
+      cssClass: 'my-custom-class',
+      // event: ev,
+      componentProps: {
+        'motif_return': this.data.motif_return,
+        'montantTransaction': this.data.montantTransaction,
+
+      },
+      animated: true
+    });
+    await popover.present();
+    const { role } = await popover.onDidDismiss();
+  }
 
   async presentToast(msg, color) {
     const toast = await this.toastController.create({
@@ -61,15 +79,18 @@ export class RechargeTelPage implements OnInit {
   }
 
 
-  submit(form) {
+  async submit(form) {
     if (this.solde > form.value.montant) {
       form.value.idCompte = this.user.idCompte;
       form.value.idWallet = this.user.idWallet;
       form.value.id_prestataire = 1;
       form.value.id_canal_paiement = 2;
-      console.log(form.value);
-      this.transaService.payment(form.value);
-      this.presentToast('Transaction validée.', 'primary');
+      await this.transaService.payment(form.value);
+      this.data = await this.transaService.trans;
+      console.log(this.data);
+
+      this.presentPopover();
+      //this.presentToast('Transaction validée.', 'primary');
     } else {
       this.presentToast('Votre solde est insuffisant.', 'danger');
     }
