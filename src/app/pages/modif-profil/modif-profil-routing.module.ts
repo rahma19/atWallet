@@ -7,7 +7,11 @@ const routes: Routes = [
   {
     path: '',
     component: ModifProfilPage
+  },  {
+    path: 'modifier-mdp',
+    loadChildren: () => import('./modifier-mdp/modifier-mdp.module').then( m => m.ModifierMdpPageModule)
   }
+
 ];
 
 @NgModule({

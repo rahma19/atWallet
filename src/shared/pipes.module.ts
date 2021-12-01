@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { Currency } from './currency.pipe';
+import { CurrencyP } from './currencyP.pipe';
 
 
 
@@ -8,11 +9,11 @@ import { Currency } from './currency.pipe';
     imports: [CommonModule],
     declarations: [
 
-        Currency
+        Currency, CurrencyP
     ],
     exports: [
 
-        Currency
-    ],
+        Currency, CurrencyP
+    ]
 })
 export class PipesModule { }

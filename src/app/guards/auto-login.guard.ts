@@ -10,20 +10,17 @@ import { AuthService } from '../core/services/auth.service';
 })
 export class AutoLoginGuard implements CanLoad {
   constructor(public authService: AuthService, private router: Router) { }
+
+  //if current user is not null redirect to tabs, else return true
   canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
     const currentUser = localStorage.getItem('TOKEN_KEY');
     if (currentUser) {
-
       this.router.navigateByUrl('/tabs', { replaceUrl: true });
-
       return false;
     }
     else {
-
       return true;
     }
   }
-
-
 
 }

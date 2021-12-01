@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons (click)="return()" slot="start">
+      <ion-icon name="arrow-back"></ion-icon>
+     </ion-buttons>
+    <ion-title>Parametre</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-icon color="secondary" name="person-outline"></ion-icon>
+      <ion-label (click)="navigProfil()">Modifier profil</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon color="secondary" name="lock-closed-outline"></ion-icon>
+      <ion-label (click)="navigMdp()">Modifier mot de passe</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-icon color="secondary" name="alert-circle-outline"></ion-icon>
+      <ion-label (click)="navigDetail()">A propos</ion-label>
+    </ion-item>
+   
+  </ion-list>
+</ion-content>

@@ -4,8 +4,7 @@ import { Pipe } from '@angular/core';
     name: 'customCurrencyFormat'
 })
 export class Currency {
-    devise: any = '';
-    chiffre: any = '';
+
     constructor() {
 
     }

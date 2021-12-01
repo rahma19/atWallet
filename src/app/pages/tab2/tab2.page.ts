@@ -10,13 +10,14 @@ import { TransactionService } from 'src/app/core/services/transaction.service';
 })
 export class Tab2Page implements OnInit {
   user = null;
-
   transaction: any[] = [];
   datedeb: any;
   datefin: any;
   derniereTransa: any;
 
-  constructor(private location: Location, private transService: TransactionService, private authService: AuthService) { }
+  constructor(private location: Location,
+    private transService: TransactionService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     // var d = new Date();
@@ -24,7 +25,10 @@ export class Tab2Page implements OnInit {
     // this.datedeb = '2021-10-25';
     // let datefin = '2021-10-28';
     this.user = this.authService.payload;
+    //get all transactions
     this.transService.allTransactions$.subscribe(res => {
+      console.log(res);
+
       this.transaction = res;
       this.derniereTransa = res[0].dateTransaction;
     });

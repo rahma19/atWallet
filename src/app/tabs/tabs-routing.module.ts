@@ -16,9 +16,13 @@ const routes: Routes = [
         loadChildren: () => import('../pages/tab2/tab2.module').then(m => m.Tab2PageModule)
       },
       {
-        path: 'profil',
-        loadChildren: () => import('../pages/modif-profil/modif-profil.module').then(m => m.ModifProfilPageModule)
+        path: 'parametre',
+        loadChildren: () => import('../pages/settings/settings.module').then(m => m.SettingsPageModule)
       },
+      // {
+      //   path: 'profil',
+      //   loadChildren: () => import('../pages/modif-profil/modif-profil.module').then(m => m.ModifProfilPageModule)
+      // },
       // {
       //   path: 'tab3',
       //   loadChildren: () => import('../pages/tab3/tab3.module').then(m => m.Tab3PageModule)

@@ -24,25 +24,25 @@ export class Tab1Page implements OnInit {
   check: any;
   loading = false;
 
-  constructor(private authService: AuthService, private alertController: AlertController, private router: Router, public toastController: ToastController, private transService: TransactionService, private connectivity: NetworkService) {
+  constructor(private authService: AuthService,
+    private alertController: AlertController,
+    private router: Router,
+    public toastController: ToastController,
+    private transService: TransactionService,
+    private connectivity: NetworkService) {
 
   }
 
   ngOnInit(): void {
     // this.loading = true;
-
     this.user = this.authService.payload;
-
+    //check network
     this.connectivity.appIsOnline$.subscribe(async online => {
-
       console.log(online)
-
       if (online) {
         await this.refrech();
         this.getAllTransactions();
-
         console.log("App is online")
-
       } else {
         //  this.solde = this.user.solde;
         this.transService.solde$.subscribe((res) => {
@@ -50,20 +50,14 @@ export class Tab1Page implements OnInit {
         });
         this.transService.allTransactions$.subscribe(res => {
           this.transaction = res;
-          console.log(this.transaction);
-
-        }); console.log("App is offline")
-
+        });
+        console.log("App is offline")
       }
       this.check = online;
-
     })
-    console.log(this.transaction);
-
-
-
   }
 
+  //get all transactions
   getAllTransactions() {
     // var d = new Date();
     // this.datefin = moment(d).format("YYYY-MM-DD");
@@ -71,12 +65,10 @@ export class Tab1Page implements OnInit {
     this.transService.getAllTransaction(this.user.idCompte);//this.datedeb, this.datefin,
     this.transService.allTransactions$.subscribe(res => {
       this.transaction = res;
-      console.log(this.transaction);
-
     });
-
   }
 
+  //refresh balance
   async refrech() {
     this.transService.getSolde(this.user.idCompte);
     this.transService.solde$.subscribe((res) => {
@@ -84,12 +76,12 @@ export class Tab1Page implements OnInit {
     });
   }
 
-
   async logout() {
     await this.authService.logout();
     this.router.navigateByUrl('/', { replaceUrl: true });
   }
 
+  //navigate to recharge interface
   async nav() {
     if (this.check) {
       this.router.navigate(['recharge-tel']);
@@ -100,11 +92,11 @@ export class Tab1Page implements OnInit {
         message: 'vérifier votre connexion',
         buttons: ['OK'],
       });
-
       alert.present();
     }
   }
 
+  //navigate to QR code interface
   async navQR() {
     if (this.check) {
       this.router.navigate(['paiement-qr']);
@@ -115,8 +107,9 @@ export class Tab1Page implements OnInit {
         message: 'vérifier votre connexion',
         buttons: ['OK'],
       });
-
       alert.present();
     }
   }
+
+
 }

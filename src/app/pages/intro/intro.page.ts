@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
-import { INTRO_KEY } from 'src/app/guards/intro.guard';
+import { INTRO_KEY, REGISTER_KEY } from 'src/app/guards/intro.guard';
 import { Router } from '@angular/router';
-import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-intro',
@@ -22,13 +21,17 @@ export class IntroPage implements OnInit {
     this.slides.slideNext();
   }
 
+  //return user to signup
   async start() {
     await localStorage.setItem(INTRO_KEY, 'true');
-    this.router.navigateByUrl('/login', { replaceUrl: true });
+    this.router.navigateByUrl('/login');
   }
 
+  //return user to signup
   async startS() {
-    await localStorage.setItem(INTRO_KEY, 'true');
-    this.router.navigateByUrl('/signup', { replaceUrl: true });
+    await localStorage.setItem(REGISTER_KEY, 'true');
+    this.router.navigateByUrl('/signup');
   }
+
+
 }

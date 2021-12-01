@@ -21,4 +21,6 @@ export class AfficheTransactionComponent implements OnInit {
     this.router.navigate(['/tabs']);
     this.pop.dismiss();
   }
+
+
 }

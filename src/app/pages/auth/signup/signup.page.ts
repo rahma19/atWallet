@@ -7,14 +7,10 @@ import { AuthService } from 'src/app/core/services/auth.service';
   templateUrl: './signup.page.html',
   styleUrls: ['./signup.page.scss'],
 })
-export class SignupPage implements OnInit {
+export class SignupPage {
 
   credentials: FormGroup;
-
-  constructor(private fb: FormBuilder,
-    private authService: AuthService,) { }
-
-  ngOnInit() {
+  constructor(private fb: FormBuilder) {
     this.credentials = this.fb.group({
       nom: ['', [Validators.required]],
       prenom: ['', [Validators.required]],
@@ -23,6 +19,7 @@ export class SignupPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
+
   get email() {
     return this.credentials.get('email');
   }
@@ -43,3 +40,4 @@ export class SignupPage implements OnInit {
     return this.credentials.get('phone');
   }
 }
+

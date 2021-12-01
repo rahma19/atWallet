@@ -13,9 +13,16 @@
         <img src="../../../assets/img/user1.png" class="card-img" />
         <h4 style="color: teal;">{{user.nom}} {{user.prenom}}</h4>
       </div>
-
+      
       <form #f="ngForm" class="crd1">
-
+        <!-- <ion-fab style="margin-top: -38%;" vertical="start" horizontal="start" edge slot="fixed">
+          <ion-fab-button>
+            <ion-icon name="settings"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-list side="bottom">
+            <ion-fab-button style="width: 120px;" (click)="redirectMdp()">mot de passe</ion-fab-button>
+          </ion-fab-list>
+        </ion-fab> -->
           <ion-item>
             <ion-label position="floating">Nom</ion-label>
             <ion-input type="text" name="nom" [(ngModel)]="user.nom" #name="ngModel" required></ion-input>
@@ -54,7 +61,6 @@
               </div>
             </div>
           </ion-item>
-
           <ion-button type="submit" [disabled]="!f.valid" (click)="submit(f)" color="secondary">Confirmer</ion-button>
       </form>
 

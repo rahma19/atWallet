@@ -39,9 +39,7 @@ export class RechargeTelPage implements OnInit {
     this.transaService.solde$.subscribe((res) => {
       this.solde = res;
     });
-    console.log(this.user, this.solde);
-
-    this.tel = '57383327' //this.user.telephone1;
+    this.tel = this.user.telephone1; //'57383327' //this.user.telephone1;
     this.check();
   }
 
@@ -53,6 +51,8 @@ export class RechargeTelPage implements OnInit {
   get montant() {
     return this.cred.get('montant').value;
   }
+
+  //afficher le popup de validation  
   async presentPopover() {
     const popover = await this.popoverController.create({
       component: AfficheTransactionComponent,
@@ -61,7 +61,6 @@ export class RechargeTelPage implements OnInit {
       componentProps: {
         'motif_return': this.data.motif_return,
         'montantTransaction': this.data.montantTransaction,
-
       },
       animated: true
     });
@@ -78,7 +77,7 @@ export class RechargeTelPage implements OnInit {
     toast.present();
   }
 
-
+  //paiment recharge telephonique
   async submit(form) {
     if (this.solde > form.value.montant) {
       form.value.idCompte = this.user.idCompte;
@@ -87,8 +86,6 @@ export class RechargeTelPage implements OnInit {
       form.value.id_canal_paiement = 2;
       await this.transaService.payment(form.value);
       this.data = await this.transaService.trans;
-      console.log(this.data);
-
       this.presentPopover();
       //this.presentToast('Transaction validée.', 'primary');
     } else {
@@ -96,12 +93,11 @@ export class RechargeTelPage implements OnInit {
     }
     if (this.verifNum == false) {
       this.presentToast('Veillez saisir un numero valide.', 'danger');
-
     }
   }
 
+  //changer la photo du l'operateur selon le premier chiffre du num tel
   check() {
-
     if (this.tel != '') {
       if (this.tel[0] == 2) {
         this.path = "../../../assets/img/ooredoo.jpg";
@@ -116,12 +112,12 @@ export class RechargeTelPage implements OnInit {
             this.path = "../../../assets/img/orange.png";
             this.verifNum = true;
           }
+          //si premier chiffre non valide
           else {
             this.presentToast('numero non valide.', 'danger');
             this.verifNum = false;
           }
     }
-
   }
 
 }

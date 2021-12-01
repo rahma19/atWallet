@@ -30,4 +30,8 @@ ion-app{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
       //  font-family: 'Lato-Light' !important;
     }
+    .popover-content.sc-ion-popover-md{ top: 100px;
+      --width: 90%;
+          left: 15px ;
+          transform-origin: left top}
 }

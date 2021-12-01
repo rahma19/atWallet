@@ -3,6 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { AutoLoginGuard } from './guards/auto-login.guard';
 import { IntroGuard } from './guards/intro.guard';
+import { RegistrationGuard } from './guards/registration.guard';
 import { DetailAchatPage } from './pages/detail-achat/detail-achat.page';
 import { PaiementQrPage } from './pages/paiement-qr/paiement-qr.page';
 import { RechargeTelPage } from './pages/recharge-tel/recharge-tel.page';
@@ -17,7 +18,7 @@ const routes: Routes = [
   {
     path: 'intro',
     loadChildren: () => import('./pages/intro/intro.module').then(m => m.IntroPageModule),
-    canLoad: [IntroGuard]
+    canLoad: [IntroGuard, RegistrationGuard]
   },
   {
     path: 'signup',
@@ -53,8 +54,19 @@ const routes: Routes = [
   {
     path: 'detail-achat',
     loadChildren: () => import('./pages/detail-achat/detail-achat.module').then(m => m.DetailAchatPageModule)
-  }
-
+  },
+  {
+    path: 'modifier-mdp',
+    loadChildren: () => import('./pages/modif-profil/modifier-mdp/modifier-mdp.module').then(m => m.ModifierMdpPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule)
+  },
+  {
+    path: 'tab3',
+    loadChildren: () => import('./pages/tab3/tab3.module').then(m => m.Tab3PageModule)
+  },
 
 
 ];

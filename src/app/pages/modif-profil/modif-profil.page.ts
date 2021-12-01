@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { NetworkService } from 'src/app/core/services/network.service';
@@ -12,18 +13,16 @@ export class ModifProfilPage implements OnInit {
   check: boolean;
   user: any;
 
-  constructor(private connectivity: NetworkService, private alertController: AlertController, private authService: AuthService
+  constructor(private connectivity: NetworkService,
+    private alertController: AlertController,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
 
     this.user = this.authService.payload;
-    console.log(this.user);
-
     this.connectivity.appIsOnline$.subscribe(async online => {
-
-      console.log(online)
-
       if (online) {
         this.check = true;
       }
@@ -41,7 +40,6 @@ export class ModifProfilPage implements OnInit {
   }
 
   async submit(form) {
-
     console.log(form.value);
     if (this.check) {
 
@@ -52,8 +50,12 @@ export class ModifProfilPage implements OnInit {
         message: 'vérifier votre connexion',
         buttons: ['OK'],
       });
-
       alert.present();
     }
   }
+
+  redirectMdp() {
+    this.router.navigate(['/modifier-mdp']);
+  }
+
 }
