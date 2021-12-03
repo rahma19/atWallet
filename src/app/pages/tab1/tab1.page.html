@@ -9,8 +9,10 @@
 </ion-toolbar>
 
 <ion-content [hidden]="loading " color="primary" [fullscreen]="true">
+
   <ion-card  class="crd1">
     <ion-card-content>
+
       <h3 class="greeting" >
         <ion-icon name="wallet"></ion-icon> Ma carte
       </h3>
@@ -18,14 +20,13 @@
       <ion-card class="crd">
         <ion-card-header>
           <ion-card-title class="crdCarte">
-            {{solde | customCurrencyFormat}} TND <ion-buttons *ngIf="check" (click)="refrech()" style="margin-top: -10%;margin-left: 90%;" color="light"><ion-icon name="refresh-outline"></ion-icon></ion-buttons>
+            {{solde | customCurrencyFormat}} TND <ion-buttons class="btn" *ngIf="check" (click)="refrech()"  color="light"><ion-icon name="refresh-outline"></ion-icon></ion-buttons>
           </ion-card-title>
         </ion-card-header>
-
         <ion-card-content>
           <p style="font-size: 15px;">
-            {{user.numeroCompte}}<br>
-            {{user.telephone1}}
+            {{user?.numeroCompte}}<br>
+            {{user?.telephone1}}
           </p>
         </ion-card-content>
       </ion-card>
@@ -56,7 +57,6 @@
             Paiement
           </ion-card-content>
         </ion-card>
-
       </div>
 
       <h3 class="greeting">
@@ -72,11 +72,10 @@
         </div>
         <div class="dv">
           <ion-label class="lbl">Du : {{t.designation_pretataire}} </ion-label><br />
-          <div class="dte">{{t.dateTransaction | date}} </div>
+          <div class="dte">{{t.dateTransaction | date:'short'}} </div>
         </div>
         <hr>
       </div>
-
       </div>
       
     </ion-card-content>

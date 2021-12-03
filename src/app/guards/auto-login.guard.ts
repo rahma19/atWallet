@@ -13,9 +13,12 @@ export class AutoLoginGuard implements CanLoad {
 
   //if current user is not null redirect to tabs, else return true
   canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    const currentUser = localStorage.getItem('TOKEN_KEY');
-    if (currentUser) {
-      this.router.navigateByUrl('/tabs', { replaceUrl: true });
+    const currentUser = localStorage.getItem('user');
+
+    if (currentUser != null) {
+      setTimeout(() => {
+        this.router.navigateByUrl('/tabs', { replaceUrl: true });
+      }, 500);
       return false;
     }
     else {

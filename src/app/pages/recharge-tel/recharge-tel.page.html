@@ -10,12 +10,15 @@
 <ion-content>
 
   <div class="crd">
+
     <div class="form">
       <div class="image">
         <img src="../../../assets/img/card.PNG" class="card-img" />
       </div>
+
       <form #f="ngForm">
         <div class="wrapform">
+
           <ion-item>
             <ion-label position="floating">Telephone</ion-label>
             <ion-input type="text" (keyup)="check()" [(ngModel)]="tel" name="numtel" placeholder="numTel"  #numTel="ngModel" pattern="^[0-9]*$" maxlength="8" minlength="8" required>
@@ -34,13 +37,9 @@
           </div>
 
           <div style="text-align: center;margin: 15px;">
-            <ion-checkbox name="operateur" value="1" color="primary"></ion-checkbox><img style="padding-right: 10px;"
-              width="50px" src="../../../assets/img/ooredoo.jpg" />
-            <ion-checkbox name="operateur" value="2" color="secondary"></ion-checkbox> <img style="padding-right: 10px;"
-              width="60px" src="../../../assets/img/telecom.jfif" />
-            <ion-checkbox name="operateur" value="3" color="danger"></ion-checkbox> <img style="padding-right: 10px;"
-              width="40px" src="../../../assets/img/orange.png" />
-
+            <ion-checkbox name="operateur" value="1" color="primary"></ion-checkbox><img style="padding-right: 10px;" width="50px" src="../../../assets/img/ooredoo.jpg" />
+            <ion-checkbox name="operateur" value="2" color="secondary"></ion-checkbox> <img style="padding-right: 10px;" width="60px" src="../../../assets/img/telecom.jfif" />
+            <ion-checkbox name="operateur" value="3" color="danger"></ion-checkbox> <img style="padding-right: 10px;" width="40px" src="../../../assets/img/orange.png" />
           </div>
 
           <ion-item>
@@ -62,9 +61,10 @@
 
         </div>
       </form>
-
     </div>
+
     <ion-button type="submit" [disabled]="!f.valid" (click)="submit(f)" color="secondary">Valider</ion-button>
 
   </div>
+
 </ion-content>

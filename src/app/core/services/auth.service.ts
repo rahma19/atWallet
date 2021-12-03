@@ -19,6 +19,7 @@ const TOKEN_KEY = 'access_token';
 })
 export class AuthService {
 
+  urlIam = environment.urlIam;
   url = environment.url;
   urlProf = environment.urlProf;
   user = null;
@@ -48,11 +49,11 @@ export class AuthService {
   //get user 
   async getUser(idClient): Promise<any> {
     return this.http.get<any>(this.urlProf + `/GetProfil?Id_Compte=${idClient}`).pipe(
-      tap(async user => {
+      tap(user => {
         //save user en local
-        await localStorage.setItem('user', JSON.stringify(user));
+        localStorage.setItem('user', JSON.stringify(user));
         //save user into subject
-        await this.currentUserSubject.next(JSON.parse(localStorage.getItem('user')));
+        this.currentUserSubject.next(JSON.stringify(user));
       }),
       take(1)
     ).subscribe();
@@ -68,8 +69,10 @@ export class AuthService {
   login(credentials) {
     return this.http.post<any>(this.url + `/api/login`, credentials).pipe(
       map(async payload => {
+        localStorage.setItem('mdp', credentials.password)
         //decode token
         const decoded = AuthUtils._decodeToken(payload.access_token);
+        localStorage.setItem('userId', decoded.user_id)
         //get user
         await this.getUser(decoded?.client_id);
         //save token en local if user not null
@@ -81,17 +84,22 @@ export class AuthService {
         // }
         return payload;
       }, (err) => {
-        console.log('err');
+        console.log(err);
       }));
+  }
+
+  //update password
+  updatePassword(credentials) {
+    return this.http.put<any>(this.urlIam + `/UpdatePassword`, credentials);
   }
 
   //logout
   logout() {
     localStorage.removeItem('TOKEN_KEY')
     localStorage.removeItem('transactions')
+    localStorage.removeItem('user');
     this.router.navigate(['/login']);
     this.currentUserSubject.next(null);
-    localStorage.removeItem('user');
   }
 
 }

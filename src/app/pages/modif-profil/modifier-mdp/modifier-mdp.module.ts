@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
@@ -13,8 +13,9 @@ import { ModifierMdpPage } from './modifier-mdp.page';
     CommonModule,
     FormsModule,
     IonicModule,
+    ReactiveFormsModule,
     ModifierMdpPageRoutingModule
   ],
   declarations: [ModifierMdpPage]
 })
-export class ModifierMdpPageModule {}
+export class ModifierMdpPageModule { }

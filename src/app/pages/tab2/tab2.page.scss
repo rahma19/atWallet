@@ -20,6 +20,9 @@ ion-content{
         ion-card-title{
             display: flex;
         }
+        ion-card-content{b{
+            color: rgb(219, 22, 22);
+        }}
     }
 
     h1{
@@ -29,11 +32,11 @@ ion-content{
 }
 
 .txt{
-    float: right;width: 30%;font-size: 12px;
+    float: right;width: 40%;font-size: 12px;
 }
 
 .txtStl{
-    float: left;width: 70%;font-size: 12px;
+    float: left;width: 65%;font-size: 12px;
 }
 
 .dv{

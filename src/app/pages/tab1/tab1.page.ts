@@ -33,15 +33,16 @@ export class Tab1Page implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    // this.loading = true;
-    this.user = this.authService.payload;
+  async ngOnInit(): Promise<void> {
+
+    this.user = await this.authService.payload;
+
     //check network
     this.connectivity.appIsOnline$.subscribe(async online => {
       console.log(online)
       if (online) {
         await this.refrech();
-        this.getAllTransactions();
+        await this.getAllTransactions();
         console.log("App is online")
       } else {
         //  this.solde = this.user.solde;
@@ -58,11 +59,11 @@ export class Tab1Page implements OnInit {
   }
 
   //get all transactions
-  getAllTransactions() {
+  async getAllTransactions() {
     // var d = new Date();
     // this.datefin = moment(d).format("YYYY-MM-DD");
     // this.datedeb = '2021-10-25';
-    this.transService.getAllTransaction(this.user.idCompte);//this.datedeb, this.datefin,
+    await this.transService.getAllTransaction(this.user.idCompte);//this.datedeb, this.datefin,
     this.transService.allTransactions$.subscribe(res => {
       this.transaction = res;
     });

@@ -20,11 +20,11 @@
         <div style="display: flex;">
           <div *ngIf="t.idCanalPaiement=='2'" style="font-size: 15px;width: 70%;">Recharge tel</div><br />
           <div *ngIf="t.idCanalPaiement=='1'" style="font-size: 15px;width: 70%;">Paiement QR</div><br />
-          <b style="color: rgb(219, 22, 22);width: 30%;" class="txt">- {{t.montantTransaction | customCurrencyFormat}} TND</b>
+          <b class="txt">- {{t.montantTransaction | customCurrencyFormat}} TND</b>
         </div>
         <div style="display: flex;">
           <ion-label class="txtStl">Du : {{t.designation_pretataire}}</ion-label><br />
-          <div class="txt">{{t.dateTransaction | date}} </div>
+          <div class="txt">{{t.dateTransaction | date:'short'}} </div>
         </div>
       </ion-card-content>
     </ion-card>

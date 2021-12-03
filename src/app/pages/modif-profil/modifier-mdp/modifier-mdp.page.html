@@ -9,19 +9,23 @@
 
 <ion-content>
   <div class="dv">
-    <ion-item>
-      <ion-label position="floating">Nouveau mot de passe</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item><ion-item>
-  
-      <ion-label position="floating">Confirmer mot de passe</ion-label>
-      <ion-input type="password"></ion-input>
-    </ion-item>
+    <form  [formGroup]="credentials" (ngSubmit)="submit()">
+      <ion-item>
+        <ion-label position="floating">Nouveau mot de passe</ion-label>
+        <ion-input type="password" formControlName="mdp_New_password"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label position="floating">Confirmer mot de passe</ion-label>
+        <ion-input type="password" formControlName="confirmed_password"></ion-input>
+      </ion-item>
  
   <div class="dvBlock">
     <b style="font-size: 10px;color: blue;">Vous pouvez changer votre mot de passe</b>
   <ion-button  type="submit" color="secondary">Enregistrer</ion-button>
   </div>
+</form>
+
 </div>
 
 </ion-content>

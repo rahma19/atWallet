@@ -25,11 +25,13 @@ ion-content{
   }
 
   .rechge{
-    display: flex;text-align: center;
+    display: flex;
+    text-align: center;
   }
 
   .iconcrd{
-    float: left;color:white;
+    float: left;
+    color:white;
   }
 
   .crd{
@@ -68,33 +70,52 @@ ion-content{
   }
 
   .stl{
-    float: right;margin-left:40%;font-size: 20px;font-weight: normal;
+    float: right;
+    margin-left:40%;
+    font-size: 20px;
+    font-weight: normal;
   }
 
   .crdCarte{
-    text-align: center; font-weight: bold;color: white;
+    text-align: center;
+     font-weight: bold;
+     color: white;
   }
 
   .trans{
-    float: left;width: 30%;
+    float: left;
+    width: 30%;
   }
 
   .lbl{
-    float: left;width: 30%;font-size: 11px;color: gray;
+    float: left;
+    width: 30%;
+    font-size: 11px;
+    color: gray;
   }
 
   .dte{
-    float: right;margin-left:40%;font-size: 11px;color: gray;
+    float: right;
+    margin-left:38%;
+    font-size: 11px;
+    color: gray;
   }
 
   .mont{
-    float: right;margin-left:40%;
+    float: right;
+    margin-left:38%;
   }
 
   .dv{
-    display: flex;color: black;
+    display: flex;
+    color: black;
   }
 
   .divItem{
     height: auto;
+  }
+
+  .btn{
+    margin-top: -10%;
+    margin-left: 90%;
   }

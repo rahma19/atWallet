@@ -3,28 +3,31 @@
     <ion-buttons slot="start" (click)="return()">
       <ion-icon name="arrow-back"></ion-icon>
     </ion-buttons>
-    <!-- <ion-title>Detail Achat</ion-title> -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
   <ion-card>
     <ion-card-title>
       <b>Detail du Paiement</b>
     </ion-card-title>
+
     <ion-card-content>
       <h2>Detail commerçant</h2>
+
       <ion-item>
         <div>
           <b>Nom</b> {{nom}}<br>
           <b>Ville</b> {{ville}}<br>
-          <b>Nom de l'enseigne</b> {{nomMag}}<br>
+          <b>Nom du magasin</b> {{nomMag}}<br>
         </div>
       </ion-item>
+
       <h2>Detail Achat</h2>
+
       <ion-item>
         <div> <b>Montant</b> {{montant | customCurrencyFormat }} Dt <br>
-          
         </div>
       </ion-item>
 
@@ -48,12 +51,14 @@
           </div>
         </ion-item>
 
-        <div class="dv">                                                                                                                                                                                       
-          <ion-button>Annuler</ion-button>
-          <ion-button type="submit" [disabled]="!credentials.valid">Confirmer</ion-button>
+        <div class="dv">
+          <ion-button color="secondary" (click)="return()">Annuler</ion-button>
+          <ion-button color="secondary" type="submit" [disabled]="!credentials.valid">Confirmer</ion-button>
         </div>
+        
       </form>
 
     </ion-card-content>
   </ion-card>
+
 </ion-content>

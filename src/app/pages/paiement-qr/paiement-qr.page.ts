@@ -91,15 +91,15 @@ export class PaiementQrPage implements OnInit {
 
   //scaning QR code
   async scanBarcode() {
-    let qr = "00020101021252043005530378854061000005802TN5912MAGASIN TEST6014VILLE INCONNUE610499990016tn.stb.digicarte011099999999  62440203***052021DCSTB1999010000004070201110340063040ACB";
+    let qr = "000201010212520430055303788540410005802TN5905NAJLA6006ARIANA6104999926340016tn.stb.digicarte0110888888888862440203***0305AZIZA05111234567890007020511034006304E1E6";
     this.decoderQR(qr);
-    this.transactionService.achat = this.data;
+    this.transactionService.achat = await this.data;
     await this.router.navigateByUrl('/detail-achat');
     // const options: BarcodeScannerOptions = {
     //   preferFrontCamera: false,
     //   showFlipCameraButton: true,
     //   showTorchButton: true,
-    //   torchOn: false,
+    //   torchOn: false,0
     //   prompt: 'Place a barcode inside the scan area',
     //   resultDisplayDuration: 500,
     //   formats: 'EAN_13,EAN_8,QR_CODE,PDF_417 ',

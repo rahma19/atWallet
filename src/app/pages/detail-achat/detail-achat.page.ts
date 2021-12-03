@@ -38,6 +38,8 @@ export class DetailAchatPage implements OnInit {
 
     //get data 
     this.achat = await this.transactionService.achat;
+    console.log(this.achat);
+
     this.user = this.authService.payload;
     this.montant = this.achat[4].val;
     this.nomMag = this.achat[12].val;
@@ -115,6 +117,5 @@ export class DetailAchatPage implements OnInit {
       this.presentToast('Votre solde est insuffisant.', 'danger');
     }
   }
-
 
 }

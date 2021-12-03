@@ -69,8 +69,9 @@ export class TransactionService {
   //paiement recharge
   async payment(form): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post<any>(this.urlPay + '/api/Paiement/PaiementRechargeTelephonique', form).pipe(take(1)).subscribe(async (res) => {
+      this.http.post<any>(this.urlPay + '/PaiementRechargeTelephonique', form).pipe(take(1)).subscribe(async (res) => {
         await this.getSolde(form.idCompte);
+        console.log(res);
         this.getAllTransaction(form.idCompte);
         let us = JSON.parse(localStorage.getItem('user'));
         us.solde = this.soldeSubject.value;
@@ -86,8 +87,9 @@ export class TransactionService {
   //paiement QR code
   async paymentQr(form): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post<any>(this.urlPay + '/api/Paiement/PaiementQRCode', form).pipe(take(1)).subscribe(async (res) => {
+      this.http.post<any>(this.urlPay + '/PaiementQRCode', form).pipe(take(1)).subscribe(async (res) => {
         await this.getSolde(form.idCompte);
+        console.log(res);
         this.getAllTransaction(form.idCompte);
         let us = JSON.parse(localStorage.getItem('user'));
         us.solde = this.soldeSubject.value;
