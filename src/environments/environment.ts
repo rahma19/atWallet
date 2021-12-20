@@ -4,12 +4,12 @@
 
 export const environment = {
   production: false,
-  urlIam: 'http://196.203.219.35:15201/Account',
-  url: 'http://196.203.219.35:15203', //'http://192.168.3.16:1001', //'http://10.12.113.152:15201',
-  urlCompte: 'http://196.203.219.35:15214/api/Compte', //'http://10.12.113.152:15270/api/Compte',
-  urlPay: 'http://196.203.219.35:15236/api/Paiement', //'http://192.168.3.16:2001/api/Paiement', //'http://10.12.113.152:15272/api/Paiement',
-  urlTransa: 'http://196.203.219.35:15238/api/Transaction', //'http://10.12.113.152:15271/api/Transaction',
-  urlProf: 'http://196.203.219.35:15214/api/Compte' //'http://192.168.3.16:2012/api/Compte' //"http://10.12.113.152:15270/api/Compte"
+  urlIam: 'http://10.12.113.152:15201/Account',
+  url: 'http://10.12.113.152:15203', //'http://192.168.3.16:1001', //'http://10.12.113.152:15201',
+  urlCompte: 'http://10.12.113.152:15214/api/Compte', //'http://10.12.113.152:15270/api/Compte',
+  urlPay: 'http://10.12.113.152:15236/api/Paiement', //'http://192.168.3.16:2001/api/Paiement', //'http://10.12.113.152:15272/api/Paiement',
+  urlTransa: 'http://10.12.113.152:15238/api/Transaction', //'http://10.12.113.152:15271/api/Transaction',
+  urlProf: 'http://10.12.113.152:15214/api/Compte' //'http://192.168.3.16:2012/api/Compte' //"http://10.12.113.152:15270/api/Compte"
 };
 
 /*

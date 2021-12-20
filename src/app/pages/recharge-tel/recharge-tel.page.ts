@@ -30,26 +30,30 @@ export class RechargeTelPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.user = this.authService.payload;
+
     this.cred = this.fb.group({
-      montant: ['', [Validators.required]],
-      numTel: ['', [Validators.required]]
+      montant: ['', [Validators.required, Validators.min(1000)]],
+      numTel: [this.user.telephone1, [Validators.required, Validators.min(20000000)]],
+      idCompte: [this.user.idCompte],
+      idWallet: [this.user.idWallet],
+      id_prestataire: ['1'],
+      id_canal_paiement: ['2'],
     });
 
-    this.user = this.authService.payload;
     this.transaService.solde$.subscribe((res) => {
       this.solde = res;
     });
-    this.tel = this.user.telephone1; //'57383327' //this.user.telephone1;
     this.check();
   }
 
   // Easy access for form fields
   get numTel() {
-    return this.cred.get('numTel').value;
+    return this.cred.get('numTel');
   }
 
   get montant() {
-    return this.cred.get('montant').value;
+    return this.cred.get('montant');
   }
 
   //afficher le popup de validation  
@@ -78,45 +82,35 @@ export class RechargeTelPage implements OnInit {
   }
 
   //paiment recharge telephonique
-  async submit(form) {
-    if (this.solde > form.value.montant) {
-      form.value.idCompte = this.user.idCompte;
-      form.value.idWallet = this.user.idWallet;
-      form.value.id_prestataire = 1;
-      form.value.id_canal_paiement = 2;
-      await this.transaService.payment(form.value);
+  async submit() {
+    console.log(this.cred.value);
+    if (this.solde > this.cred.value.montant) {
+      await this.transaService.payment(this.cred.value);
       this.data = await this.transaService.trans;
       this.presentPopover();
       //this.presentToast('Transaction validée.', 'primary');
     } else {
       this.presentToast('Votre solde est insuffisant.', 'danger');
     }
-    if (this.verifNum == false) {
-      this.presentToast('Veillez saisir un numero valide.', 'danger');
-    }
   }
 
   //changer la photo du l'operateur selon le premier chiffre du num tel
   check() {
-    if (this.tel != '') {
-      if (this.tel[0] == 2) {
+    if (this.cred.value.numTel != '') {
+      if (this.cred.value.numTel[0] == 2) {
         this.path = "../../../assets/img/ooredoo.jpg";
-        this.verifNum = true;
       } else
-        if (this.tel[0] == 9) {
+        if (this.cred.value.numTel[0] == 9) {
           this.path = "../../../assets/img/telecom.jfif";
-          this.verifNum = true;
         }
         else
-          if (this.tel[0] == 5) {
+          if (this.cred.value.numTel[0] == 5) {
             this.path = "../../../assets/img/orange.png";
-            this.verifNum = true;
           }
-          //si premier chiffre non valide
-          else {
-            this.presentToast('numero non valide.', 'danger');
-            this.verifNum = false;
-          }
+      //si premier chiffre non valide
+      // else {
+      //   this.presentToast('numero non valide.', 'danger');
+      // }
     }
   }
 

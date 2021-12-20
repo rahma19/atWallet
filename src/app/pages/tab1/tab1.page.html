@@ -63,8 +63,10 @@
         <ion-icon name="reload"></ion-icon> Transactions recentes
       </h3><br>
 
-      <div class="divItem" *ngFor="let t of transaction ;let i = index">
+      <div class="divItem">
+      <div  *ngFor="let t of transaction ;let i = index">
         <div  *ngIf="i<3">
+          <h5 [ngStyle]="{'color': t.motifErreur=='SUCCESS' ? 'green' : 'red','fontWeight':'bold' }">{{t.motifErreur}}</h5>
         <div class="dv">
           <div *ngIf="t.idCanalPaiement=='2'" class="trans">Recharge tel</div><br />
           <div *ngIf="t.idCanalPaiement=='1'" class="trans">Paiement QR</div><br />
@@ -72,9 +74,10 @@
         </div>
         <div class="dv">
           <ion-label class="lbl">Du : {{t.designation_pretataire}} </ion-label><br />
-          <div class="dte">{{t.dateTransaction | date:'short'}} </div>
+          <div class="dte">{{t.dateTransaction }} </div> <!--| date:'short'-->
         </div>
         <hr>
+      </div>
       </div>
       </div>
       

@@ -8,8 +8,8 @@ ion-content{
     div{
         width: 100%;
     }
-    ion-button{
-        margin-left: 20%;
+    ion-button{margin-left: 15%;
+       // margin-left: 20%;
         &::part(native) {
             border-radius: 20px;
         }

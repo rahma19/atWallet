@@ -14,10 +14,23 @@
     </h2>
   </ion-item>
 
-   <img   width="70%" src="../../../assets/img/qr.png" />
 
 <div>
-  <ion-button  class="row" color="secondary" (click)="scanBarcode()">   Scanner QR code  </ion-button> 
 </div>
+
+<ion-grid>
+
+  <ion-row class="ion-align-items-center">
+    <ion-col>
+    <img   width="70%" src="../../../assets/img/qr.png" />
+  </ion-col>
+</ion-row>
+
+  <ion-row class="ion-align-items-center">
+    <ion-col>
+      <ion-button color="secondary" (click)="scanBarcode()">   Scanner QR code  </ion-button> 
+    </ion-col>
+  </ion-row>
+</ion-grid>
 
 </ion-content>

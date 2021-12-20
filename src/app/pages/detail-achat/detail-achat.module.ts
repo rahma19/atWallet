@@ -11,6 +11,7 @@ import { Currency } from 'src/shared/currency.pipe';
 import { PipesModule } from 'src/shared/pipes.module';
 import { AfficheTransactionComponent } from '../affiche-transaction/affiche-transaction.component';
 import { CurrencyP } from 'src/shared/currencyP.pipe';
+import { NumberFormat } from 'src/shared/number.pipe';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { CurrencyP } from 'src/shared/currencyP.pipe';
     DetailAchatPageRoutingModule
   ],
   declarations: [DetailAchatPage, AfficheTransactionComponent],
-  providers: [Currency, CurrencyP]
+  providers: [Currency, CurrencyP, NumberFormat]
 })
 export class DetailAchatPageModule { }

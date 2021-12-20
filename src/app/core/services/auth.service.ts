@@ -1,16 +1,10 @@
 import { environment } from './../../../environments/environment';
-
 import { Platform, AlertController } from '@ionic/angular';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Storage } from '@ionic/storage';
-import jwt_decode from "jwt-decode";
-
 import { map, take, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { now } from '@ionic/core/dist/types/utils/helpers';
 import { AuthUtils } from 'src/app/pages/auth/login/auth.utils';
 const TOKEN_KEY = 'access_token';
 
@@ -48,12 +42,12 @@ export class AuthService {
 
   //get user 
   async getUser(idClient): Promise<any> {
-    return this.http.get<any>(this.urlProf + `/GetProfil?Id_Compte=${idClient}`).pipe(
-      tap(user => {
+    await this.http.get<any>(this.urlProf + `/GetProfil?Id_Compte=${idClient}`).pipe(
+      tap(async user => {
         //save user en local
         localStorage.setItem('user', JSON.stringify(user));
         //save user into subject
-        this.currentUserSubject.next(JSON.stringify(user));
+        await this.currentUserSubject.next(JSON.stringify(user));
       }),
       take(1)
     ).subscribe();
@@ -90,12 +84,19 @@ export class AuthService {
 
   //update password
   updatePassword(credentials) {
-    return this.http.put<any>(this.urlIam + `/UpdatePassword`, credentials);
+    return this.http.put<any>(this.urlIam + `/UpdatePassword?user_level=-1`, credentials);
+  }
+
+  //update profile
+  updateProfile(credentials) {
+    return this.http.put<any>(this.urlIam + `/UpdatePassword?user_level=-1`, credentials);
   }
 
   //logout
   logout() {
     localStorage.removeItem('TOKEN_KEY')
+    localStorage.removeItem('userId')
+    localStorage.removeItem('mdp')
     localStorage.removeItem('transactions')
     localStorage.removeItem('user');
     this.router.navigate(['/login']);

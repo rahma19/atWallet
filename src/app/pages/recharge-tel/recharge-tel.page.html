@@ -16,22 +16,21 @@
         <img src="../../../assets/img/card.PNG" class="card-img" />
       </div>
 
-      <form #f="ngForm">
+      <form [formGroup]="cred" (ngSubmit)="submit()" >
         <div class="wrapform">
 
           <ion-item>
             <ion-label position="floating">Telephone</ion-label>
-            <ion-input type="text" (keyup)="check()" [(ngModel)]="tel" name="numtel" placeholder="numTel"  #numTel="ngModel" pattern="^[0-9]*$" maxlength="8" minlength="8" required>
+            <ion-input type="text" (keyup)="check()"  formControlName="numTel" >
               <img width="35px" height="30px" [src]="path" />
             </ion-input>
           </ion-item>
-
           <div *ngIf="(numTel.dirty || numTel.touched) && numTel.errors" class="errors">
             <span *ngIf="numTel.errors?.required">numTel est obligatoire</span>
             <div *ngIf="numTel.errors?.pattern ">
               le telephone doit contenir que des chiffres.
             </div>
-            <div *ngIf=" numTel.errors?.minlength ">
+            <div *ngIf=" numTel.errors?.min">
               le telephone etre de 8 characteres.
             </div>
           </div>
@@ -44,17 +43,13 @@
 
           <ion-item>
             <ion-label position="floating">Montant</ion-label>
-            <ion-input type="text" name="montant" [(ngModel)]="mtant" placeholder="Montant" #montant="ngModel" minlength="4" step="500" pattern="\d+" required>
+            <ion-input type="number" formControlName="montant" placeholder="Montant" step="500" ><!--pattern="\d+"-->
               <ion-icon name="cash-outline"></ion-icon>
             </ion-input>
           </ion-item>
-
           <div *ngIf="(montant.dirty || montant.touched) && montant.errors" class="errors">
             <span *ngIf="montant.errors?.required">montant est obligatoire</span>
-            <div *ngIf="montant.errors?.pattern ">
-              le montant doit contenir que des chiffres.
-            </div>
-            <div *ngIf=" montant.errors?.minlength">
+            <div *ngIf=" montant.errors?.min">
               le montant doit etre au moin 1000 millime.
             </div>
           </div>
@@ -63,7 +58,7 @@
       </form>
     </div>
 
-    <ion-button type="submit" [disabled]="!f.valid" (click)="submit(f)" color="secondary">Valider</ion-button>
+    <ion-button type="submit" [disabled]="!cred.valid" (click)="submit(f)" color="secondary">Valider</ion-button>
 
   </div>
 

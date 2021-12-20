@@ -10,11 +10,12 @@ import { RechargeTelPage } from './recharge-tel.page';
 import { AfficheTransactionComponent } from '../affiche-transaction/affiche-transaction.component';
 import { Currency } from 'src/shared/currency.pipe';
 import { PipesModule } from 'src/shared/pipes.module';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule, BrowserModule,
     ReactiveFormsModule,
     IonicModule, PipesModule,
     RechargeTelPageRoutingModule

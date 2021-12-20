@@ -49,15 +49,15 @@ export class LoginPage implements OnInit {
   async login() {
     if (this.check) {
       this.authService.login(this.credentials.value).subscribe(async (res) => {
-        console.log(res);
-
-        await this.router.navigateByUrl('/tabs', { replaceUrl: true });
+        setTimeout(() => {
+          this.router.navigateByUrl('/tabs', { replaceUrl: true });
+        }, 1000);
       }, async error => {
 
         //controle sur les données saisis
         const alert = await this.alertController.create({
-          header: 'Nom d utilisateur ou mot de passe est incorrecte',
-          message: JSON.stringify(error),
+          header: 'Erreur',
+          message: "Nom d utilisateur ou mot de passe est incorrecte",
           buttons: ['OK'],
         });
         alert.present();

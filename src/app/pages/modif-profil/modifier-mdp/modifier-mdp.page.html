@@ -3,29 +3,47 @@
     <ion-buttons (click)="return()" slot="start">
       <ion-icon name="arrow-back"></ion-icon>
      </ion-buttons>
-    <ion-title>modifierMdp</ion-title>
+    <ion-title>modifier mot de passe</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="dv">
+  <ion-card class="dv">
+    <ion-card-content>
     <form  [formGroup]="credentials" (ngSubmit)="submit()">
       <ion-item>
-        <ion-label position="floating">Nouveau mot de passe</ion-label>
-        <ion-input type="password" formControlName="mdp_New_password"></ion-input>
+        <ion-label position="floating">Ancien mot de passe</ion-label>
+        <ion-input type="password" formControlName="mdp_last_password" placeholder="***************"><ion-icon name="lock-closed"></ion-icon></ion-input>
       </ion-item>
-      
+      <div *ngIf="(mdp_last_password.dirty || mdp_last_password.touched) && mdp_last_password.errors" class="errors">
+        <div *ngIf="mdp_last_password.errors.required">Veuillez saisir votre ancien mot de passe correctement.</div>
+    </div>
+
+      <ion-item>
+        <ion-label position="floating">Nouveau mot de passe</ion-label>
+        <ion-input type="password" formControlName="mdp_New_password" placeholder="***************"><ion-icon name="checkmark-outline"></ion-icon></ion-input>
+      </ion-item>
+      <div *ngIf="(mdp_New_password.dirty || mdp_New_password.touched) && mdp_New_password.errors" class="errors">
+        <div *ngIf="mdp_New_password.errors.required">Nouveau mot de passe est obligatoire.</div>
+        <span *ngIf="mdp_New_password.errors?.minlength">mot de passe doit etre de 6 characteres</span>
+
+    </div>
+
       <ion-item>
         <ion-label position="floating">Confirmer mot de passe</ion-label>
-        <ion-input type="password" formControlName="confirmed_password"></ion-input>
+        <ion-input type="password" formControlName="confirmed_password" placeholder="***************"><ion-icon name="checkmark-done-outline"></ion-icon></ion-input>
       </ion-item>
+        <div *ngIf="(confirmed_password.dirty || confirmed_password.touched) && confirmed_password.errors" class="errors">
+          <div *ngIf="confirmed_password.errors.required">Ce champs est obligatoire.</div>
+          <div *ngIf="confirmed_password.errors.confirmedValidator">Le nouveau mot de passe doit correspondre a la confirmation du mot de passe.</div>
+      </div>
  
   <div class="dvBlock">
-    <b style="font-size: 10px;color: blue;">Vous pouvez changer votre mot de passe</b>
-  <ion-button  type="submit" color="secondary">Enregistrer</ion-button>
+    <b style="font-size: 10px;color: blue;">Vous pouvez changer votre mot de passe</b><br>
+  <ion-button  type="submit" color="secondary" >Enregistrer</ion-button> <!-- [disabled]="!credentials.valid"-->
   </div>
 </form>
-
-</div>
+</ion-card-content>
+  </ion-card>
 
 </ion-content>

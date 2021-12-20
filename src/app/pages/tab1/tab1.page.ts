@@ -65,7 +65,11 @@ export class Tab1Page implements OnInit {
     // this.datedeb = '2021-10-25';
     await this.transService.getAllTransaction(this.user.idCompte);//this.datedeb, this.datefin,
     this.transService.allTransactions$.subscribe(res => {
+      console.log(res);
+      for (let i = 0; i < res.length; i++)
+        res[i].dateTransaction = moment(res[i].dateTransaction).format('DD/MM/YYYY HH:mm');
       this.transaction = res;
+
     });
   }
 

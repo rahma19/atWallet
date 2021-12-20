@@ -34,18 +34,15 @@
       <form [formGroup]="credentials" (ngSubmit)="onSubmit()">
         <ion-item style="padding: 0;">
           <ion-label position="floating">Telephone</ion-label>
-          <ion-input type="text" placeholder="numTel" formControlName="numtel">
+          <ion-input type="number" placeholder="numTel" formControlName="numtel"  >
             <ion-icon name="cash-outline"></ion-icon>
           </ion-input>
           <div *ngIf="(numtel.dirty || numtel.touched) && numtel.errors" class="errors">
             <span *ngIf="numtel.errors?.required">num Tel est obligatoire</span>
-            <div *ngIf="numtel.errors?.pattern ">
-              le telephone doit contenir que des chiffres.
-            </div>
-            <div *ngIf=" numtel.errors?.minlength ">
+            <div *ngIf="numtel.errors?.min">
               le telephone doit etre de 8 characteres.
             </div>
-            <div *ngIf=" numtel.errors?.maxlength ">
+            <div *ngIf="numtel.errors?.max">
               le telephone doit etre de 8 characteres.
             </div>
           </div>
@@ -53,9 +50,15 @@
 
         <div class="dv">
           <ion-button color="secondary" (click)="return()">Annuler</ion-button>
-          <ion-button color="secondary" type="submit" [disabled]="!credentials.valid">Confirmer</ion-button>
+          <ion-button color="secondary" type="submit" [disabled]="!credentials.valid || valid">Confirmer</ion-button>
         </div>
         
+        <div *ngIf="valid">
+          <div class="spinner-img">
+          </div>
+          <h3 id="titreload">Chargement en cours ....</h3>
+        </div>
+      
       </form>
 
     </ion-card-content>

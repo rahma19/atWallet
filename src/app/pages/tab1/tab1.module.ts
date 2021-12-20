@@ -1,7 +1,7 @@
 import { IonicModule } from '@ionic/angular';
 import { NgModule, Pipe } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Tab1Page } from './tab1.page';
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
@@ -15,7 +15,7 @@ import { CurrencyP } from 'src/shared/currencyP.pipe';
   imports: [
     IonicModule,
     CommonModule,
-    FormsModule,
+    FormsModule, ReactiveFormsModule,
     PipesModule,
     Tab1PageRoutingModule
   ],

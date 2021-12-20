@@ -1,17 +1,19 @@
 <ion-card class="card">
 <ion-card-title>
   <ion-buttons  (click)="close()">
-    <ion-icon name="close"></ion-icon>
+    <ion-icon  name="close"></ion-icon>
     </ion-buttons>
-    <h3 class="hclass">{{motif_return}} De<br> Transactions!</h3>
+    <h4 class="hclass" *ngIf="motif_return=='SUCCESS'">Succes De<br> Transactions!</h4>
+    <h4 class="hclass" *ngIf="motif_return!='SUCCESS'">Echec De<br> Transactions!</h4>
 
 </ion-card-title>
   <img src="../../../assets/img/wallet.png" class="card-img"/>
 <ion-card-content >
-  <div *ngIf="motif_return=='succes'">
-    <h3 class="txt">Un montant de {{montantTransaction | customCurrencyFormat }} a été retiré de votre solde. </h3>
+  <div *ngIf="motif_return=='SUCCESS'">
+    <h4 class="txt">Un montant de {{montantTransaction | customCurrencyFormat }} a été retiré de votre solde. </h4>
   <span class="row">votre bonheur est notre plaisir</span>
   </div>
-  <div *ngIf="motif_return=='echec'">Votre transaction n'etait pas effectué</div>
+  <div style="text-align: center;" *ngIf="motif_return=='KO'|| motif_return==null ">Votre transaction n'est pas effectué</div>
+  <div style="text-align: center;" *ngIf="motif_return=='Solde insuffisant'">Votre solde est insuffisant</div>
 </ion-card-content>
 </ion-card>

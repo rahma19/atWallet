@@ -14,6 +14,7 @@ export class AfficheTransactionComponent implements OnInit {
   constructor(private router: Router, private pop: PopoverController) { }
 
   ngOnInit() {
+    console.log(this.motif_return);
 
   }
 
