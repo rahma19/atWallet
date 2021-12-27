@@ -18,10 +18,12 @@ export class ModifierMdpPage implements OnInit {
     private toastController: ToastController,
     private fb: FormBuilder,
     private authService: AuthService,
-  ) {
+  ) { }
+
+  ngOnInit() {
     this.credentials = this.fb.group({
-      use_id: ['', [Validators.required]],
-      mdp_last_password: ['', [Validators.required]],
+      use_id: [localStorage.getItem('userId'), [Validators.required]],
+      mdp_last_password: [localStorage.getItem('mdp'), [Validators.required]],
       mdp_New_password: ['', [Validators.required, Validators.minLength(6)]],
       confirmed_password: ['', [Validators.required]],
       focerupdate: ['true', [Validators.required]]
@@ -30,16 +32,11 @@ export class ModifierMdpPage implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.credentials.value.mdp_last_password = localStorage.getItem('mdp');
-  }
-
   return() {
     this.location.back();
   }
 
   submit() {
-    this.credentials.value.use_id = localStorage.getItem('userId');
     this.authService.updatePassword(this.credentials.value).pipe(take(1)).subscribe(async res => {
       await this.presentToast("mot de passe a ete changé avec succes", "success");
       this.authService.logout();
