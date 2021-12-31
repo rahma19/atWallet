@@ -19,7 +19,8 @@ import { CurrencyP } from 'src/shared/currencyP.pipe';
     PipesModule,
     Tab1PageRoutingModule
   ],
-  declarations: [Tab1Page, RechargeTelPage, PaiementQrPage],
+  declarations: [Tab1Page],
+  entryComponents: [RechargeTelPage, PaiementQrPage],
   providers: [Currency, CurrencyP]
 })
 export class Tab1PageModule { }

@@ -28,6 +28,7 @@ import { PipesModule } from 'src/shared/pipes.module';
 import { Network } from '@ionic-native/network/ngx';
 import { TransactionService } from './core/services/transaction.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AfficheTransactionComponent } from './pages/affiche-transaction/affiche-transaction.component';
 // import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 
 const JWT_Module_Options: JwtModuleOptions = {
@@ -36,8 +37,8 @@ const JWT_Module_Options: JwtModuleOptions = {
   },
 };
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [AppComponent, AfficheTransactionComponent],
+  entryComponents: [AfficheTransactionComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

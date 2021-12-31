@@ -21,7 +21,8 @@ import { NumberFormat } from 'src/shared/number.pipe';
     IonicModule, PipesModule,
     DetailAchatPageRoutingModule
   ],
-  declarations: [DetailAchatPage, AfficheTransactionComponent],
+  entryComponents: [AfficheTransactionComponent],
+  declarations: [DetailAchatPage],
   providers: [Currency, CurrencyP, NumberFormat]
 })
 export class DetailAchatPageModule { }

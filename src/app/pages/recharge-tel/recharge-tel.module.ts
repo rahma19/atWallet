@@ -20,7 +20,8 @@ import { BrowserModule } from '@angular/platform-browser';
     IonicModule, PipesModule,
     RechargeTelPageRoutingModule
   ],
-  declarations: [RechargeTelPage, AfficheTransactionComponent],
+  entryComponents: [AfficheTransactionComponent],
+  declarations: [RechargeTelPage],
   providers: [Currency]
 })
 export class RechargeTelPageModule { }

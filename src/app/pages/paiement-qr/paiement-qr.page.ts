@@ -91,33 +91,33 @@ export class PaiementQrPage implements OnInit {
 
   //scaning QR code
   async scanBarcode() {
-    let qr = "00020101021252043005530378854030.15802TN5912MAGASIN TEST6014VILLE INCONNUE6104999926440016tn.stb.digicarte01209999999999999999999962530203***0305AZIZA052021DCSTB199901000008107020111034006304E837";
-    this.decoderQR(qr);
-    this.transactionService.achat = await this.data;
-    await this.router.navigateByUrl('/detail-achat');
-    // const options: BarcodeScannerOptions = {
-    //   preferFrontCamera: false,
-    //   showFlipCameraButton: true,
-    //   showTorchButton: true,
-    //   torchOn: false,
-    //   prompt: 'Place a barcode inside the scan area',
-    //   resultDisplayDuration: 500,
-    //   formats: 'EAN_13,EAN_8,QR_CODE,PDF_417 ',
-    //   orientation: 'portrait',
-    // };
-    // //scan QR code
-    // this.barcodeScanner
-    //   .scan(options)
-    //   .then(async (barcodeData) => {
-    //     let qrcode = barcodeData.text;
-    //     this.decoderQR(qrcode);
-    //     // data to achat attribute
-    //     this.transactionService.achat = await this.data;
-    //     this.router.navigateByUrl('/detail-achat');
-    //   })
-    //   .catch((err) => {
-    //     console.log('Error', err);
-    //   });
+    // let qr = "00020101021252043005530378854030.15802TN5912MAGASIN TEST6014VILLE INCONNUE6104999926440016tn.stb.digicarte01209999999999999999999962530203***0305AZIZA052021DCSTB199901000008107020111034006304E837";
+    // this.decoderQR(qr);
+    // this.transactionService.achat = await this.data;
+    // await this.router.navigateByUrl('/detail-achat');
+    const options: BarcodeScannerOptions = {
+      preferFrontCamera: false,
+      showFlipCameraButton: true,
+      showTorchButton: true,
+      torchOn: false,
+      prompt: 'Place a barcode inside the scan area',
+      resultDisplayDuration: 500,
+      formats: 'EAN_13,EAN_8,QR_CODE,PDF_417 ',
+      orientation: 'portrait',
+    };
+    //scan QR code
+    this.barcodeScanner
+      .scan(options)
+      .then(async (barcodeData) => {
+        let qrcode = barcodeData.text;
+        this.decoderQR(qrcode);
+        // data to achat attribute
+        this.transactionService.achat = await this.data;
+        this.router.navigateByUrl('/detail-achat');
+      })
+      .catch((err) => {
+        console.log('Error', err);
+      });
   }
 
   // ionViewDidEnter() {

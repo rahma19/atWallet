@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class TransactionService {
-  url = "http://196.203.219.35:15238/api/Transaction";
+  url = "http://196.203.219.35:15238/Transaction";
   urlCompte = environment.urlCompte;
   urlPay = environment.urlPay;
   transactionSubject: BehaviorSubject<any[]>;
